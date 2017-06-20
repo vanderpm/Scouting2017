@@ -52,10 +52,11 @@ public class AutonActivity extends AppCompatActivity {
         middleAutonGear_Radiobtn        = (Button) findViewById(R.id.MiddleAutonGear_Radiobtn);
         boilerAutonGear_Radiobtn        = (Button) findViewById(R.id.BoilerAutonGear_Radiobtn);
         noAutonGear_Radiobtn            = (Button) findViewById(R.id.NoAutonGear_Radiobtn);
-        save_btn                   = (Button) findViewById(R.id.Save_btn);
+        save_btn                        = (Button) findViewById(R.id.Save_btn);
 
     }
 
+//    TODO: Make this a save method instead of sendfeedback
     public void sendFeedback(View view) throws IOException {
 
         String state;
@@ -64,9 +65,17 @@ public class AutonActivity extends AppCompatActivity {
         if(Environment.MEDIA_MOUNTED.equals(state)){
             File Root = Environment.getExternalStorageDirectory();
             File Dir = new File(Root.getAbsoluteFile()+"/MyAppFile");
-            if(!Dir.exists()) {
-                Dir.mkdir();
-            }
+//            boolean isDirectoryCreated = Dir.exists();
+//            if(!isDirectoryCreated) {
+//                isDirectoryCreated= Dir.mkdir();
+//
+//            }
+//            if(isDirectoryCreated){
+//                Toast.makeText(getApplicationContext(),"Directory created", Toast.LENGTH_LONG).show();
+//            }
+
+//            TODO: Make headings for the CSV file for later use
+//            TODO: Add the radio button responses to the csv file
             File file = new File(Dir,"MyMessage.csv");
             String Message = teamNumber_input.getText().toString() + "," +
                     matchNumber_input.getText().toString()+","+
@@ -76,20 +85,17 @@ public class AutonActivity extends AppCompatActivity {
                 FileOutputStream fileOutputStream= new FileOutputStream(file,true);
                 fileOutputStream.write(Message.getBytes());
                 fileOutputStream.close();
-            }catch(FileNotFoundException e){
-                e.printStackTrace();
-            }catch (IOException e){
+            } catch (IOException e){
                 e.printStackTrace();
             }
         }else{
             Toast.makeText(getApplicationContext(),"SD card not found", Toast.LENGTH_LONG).show();
         }
-
         Toast.makeText(getApplicationContext(),"message Saved", Toast.LENGTH_LONG).show();
-
     }
 
 
+//    TODO:Add return for Starting location
 //Starting Location Radio Button
     public void onStartingLocationRadioButtonClick(View view){
         //Is the button now checked?
@@ -113,7 +119,7 @@ public class AutonActivity extends AppCompatActivity {
     }
 
 
-
+    //    TODO:Add return for crossing Baseline
 //Crossing baseline Radio Button
     public void onBaselineRadioButtonClicked(View view){
         //Is the button now checked?
@@ -132,7 +138,7 @@ public class AutonActivity extends AppCompatActivity {
         }
     }
 
-
+    //    TODO:Add return for Auton Gear placement
 //    Auton Gear Placement Radio Buttons
     public void onAutonGearRadioButtonClicked(View view){
         //Is the button now checked?
