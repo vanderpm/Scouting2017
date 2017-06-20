@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+            <TextView
+                android:id="@+id/TeamNumber_textView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Team Number"/>
+
+            <EditText
+                android:id="@+id/TeamNumber_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+            <TextView
+                android:id="@+id/MatchNumber_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match Number"/>
+
+            <EditText
+                android:id="@+id/MatchNumber_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/StartingLocation_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Starting Location"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/FeederStartingLocation_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Feeder"
+                    android:onClick="onStartingLocationRadioButtonClick"/>
+                <RadioButton
+                    android:id="@+id/MiddleStartingLocation_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Middle"
+                    android:onClick="onStartingLocationRadioButtonClick"/>
+                <RadioButton
+                    android:id="@+id/BoilerStartingLocation_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Boiler"
+                    android:onClick="onStartingLocationRadioButtonClick"/>
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/BaseLine_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Baseline"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/SuccessBaseline_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Success"
+                    android:onClick="onBaselineRadioButtonClicked"/>
+                <RadioButton
+                    android:id="@+id/FailBaseline_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fail"
+                    android:onClick="onBaselineRadioButtonClicked"/>
+            </RadioGroup>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/AutonGear_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Auton Gear"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/FeederAutonGear_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Feeder"
+                    android:onClick="onAutonGearRadioButtonClicked"/>
+                <RadioButton
+                    android:id="@+id/MiddleAutonGear_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Middle"
+                    android:onClick="onAutonGearRadioButtonClicked"/>
+                <RadioButton
+                    android:id="@+id/BoilerAutonGear_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Boiler"
+                    android:onClick="onAutonGearRadioButtonClicked"/>
+                <RadioButton
+                    android:id="@+id/NoAutonGear_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="None"
+                    android:onClick="onAutonGearRadioButtonClicked"/>
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+            <TextView
+                android:id="@+id/AutonHighFuel_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="High Auton Fuel"/>
+            <EditText
+                android:id="@+id/AutonHighFuel_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/AutonLowFuel_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Low Auton Fuel"/>
+            <EditText
+                android:id="@+id/AutonLowFuel_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/ActivatedHopper_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activated Hopper"/>
+            <CheckBox
+                android:id="@+id/ActivatedHopper_chkbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/Save_btn"
+                android:layout_height="wrap_content"
+                android:text="@string/feedbackbutton"
+                android:onClick="sendFeedback"
+                android:layout_width="fill_parent">
+            </Button>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<ScrollView-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/ScrollView01"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:scrollbars="vertical">-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_height="fill_parent">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/TextViewTitle"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/feedbacktitle"-->
+            <!--android:textSize="10pt">-->
+        <!--</TextView>-->
+        <!--<EditText-->
+            <!--android:id="@+id/EditTextName"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="@string/feedbackname"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:layout_width="fill_parent">-->
+        <!--</EditText>-->
+        <!--<EditText-->
+            <!--android:id="@+id/EditTextEmail"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="@string/feedbackemail"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:layout_width="fill_parent">-->
+        <!--</EditText>-->
+        <!--<Spinner-->
+            <!--android:id="@+id/SpinnerFeedbackType"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:prompt="@string/feedbacktype"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:entries="@array/feedbacktypelist">-->
+        <!--</Spinner>-->
+        <!--<EditText-->
+            <!--android:id="@+id/EditTextFeedbackBody"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="@string/feedbackbody"-->
+            <!--android:inputType="textMultiLine"-->
+            <!--android:lines="5"-->
+            <!--android:layout_width="fill_parent">-->
+        <!--</EditText>-->
+        <!--<CheckBox-->
+            <!--android:id="@+id/CheckBoxResponse"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/feedbackresponse"-->
+            <!--android:layout_width="fill_parent">-->
+        <!--</CheckBox>-->
+        <!--<Button-->
+            <!--android:id="@+id/ButtonSendFeedback"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/feedbackbutton"-->
+            <!--android:onClick="sendFeedback"-->
+            <!--android:layout_width="fill_parent">-->
+        <!--</Button>-->
+    <!--</LinearLayout>-->
+<!--</ScrollView>-->
+
+

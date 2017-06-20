@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Scouting2017</string>
+    <!--Other string resources also defined in this file… -->
+    <string name="feedbacktitle">Here is a feedback app</string>
+    <string name="feedbackname">Your Name</string>
+    <string name="feedbackEmailAddress">Your Email</string>
+    <string name="feedbackbody">Feedback Details</string>
+    <string name="feedbackresponse">Would you like an email response?</string>
+    <string name="feedbackbutton">Submit Feedback</string>
+    <string name="feedbackemail">Email for feedback</string>
+    <string name="feedbacktype">What type of feedback?</string>
+    <string name="feedbacktype1">Praise</string>
+    <string name="feedbacktype2">Gripe</string>
+    <string name="feedbacktype3">Suggestion</string>
+    <string name="feedbacktype4">Bug</string>
+</resources>

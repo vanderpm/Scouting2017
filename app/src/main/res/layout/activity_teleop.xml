@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.vande.scouting2017.TeleopActivity"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:id="@+id/teleopGearPlaced_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gears Placed"/>
+
+        <EditText
+            android:id="@+id/teleopGearPlaced_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+        <TextView
+            android:id="@+id/teleopGearDropped_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gears Dropped"/>
+
+        <EditText
+            android:id="@+id/teleopGearDropped_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/feederTeleopGear_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feeder"/>
+        <Button
+            android:id="@+id/middleTeleopGear_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Middle"/>
+        <Button
+            android:id="@+id/boilerTeleopGear_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Boiler"/>
+        <Button
+            android:id="@+id/noTeleopGear_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="None"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/autonHighFuel_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High Auton Fuel"/>
+        <EditText
+            android:id="@+id/autonHighFuel_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/autonLowFuel_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low Auton Fuel"/>
+        <EditText
+            android:id="@+id/autonLowFuel_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+    </LinearLayout>
+
+   </LinearLayout>
+
+
+</LinearLayout>
+
+
+
