@@ -2,16 +2,22 @@
 <resources>
     <string name="app_name">Scouting2017</string>
     <!--Other string resources also defined in this file… -->
-    <string name="feedbacktitle">Here is a feedback app</string>
-    <string name="feedbackname">Your Name</string>
-    <string name="feedbackEmailAddress">Your Email</string>
-    <string name="feedbackbody">Feedback Details</string>
-    <string name="feedbackresponse">Would you like an email response?</string>
-    <string name="feedbackbutton">Submit Feedback</string>
-    <string name="feedbackemail">Email for feedback</string>
-    <string name="feedbacktype">What type of feedback?</string>
-    <string name="feedbacktype1">Praise</string>
-    <string name="feedbacktype2">Gripe</string>
-    <string name="feedbacktype3">Suggestion</string>
-    <string name="feedbacktype4">Bug</string>
+    <string name="teamnumberheading">Team Number</string>
+    <string name="matchnumberheading">Match Number</string>
+    <string name="startinglocationheading">Starting Location</string>
+    <string name="feederstarting">Feeder</string>
+    <string name="middlestarting">Middle</string>
+    <string name="boilerstarting">Boiler</string>
+    <string name="baselinecrossheading">Baseline</string>
+    <string name="successbaseline">Success</string>
+    <string name="failbaseline">Fail</string>
+    <string name="autongearheading">Auton Gear</string>
+    <string name="feederautongear">Feeder</string>
+    <string name="middleautongear">Middle</string>
+    <string name="boilerautongear">Boiler</string>
+    <string name="noautongear">None</string>
+    <string name="highautonfuel">High Auton Fuel</string>
+    <string name="lowautonfuel">Low Auton Fuel</string>
+    <string name="activatedhopper">Activated Hopper</string>
+    <string name="savebutton">Save</string>
 </resources>
