@@ -1,23 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Scouting2017</string>
-    <!--Other string resources also defined in this file… -->
-    <string name="teamnumberheading">Team Number</string>
-    <string name="matchnumberheading">Match Number</string>
-    <string name="startinglocationheading">Starting Location</string>
-    <string name="feederstarting">Feeder</string>
-    <string name="middlestarting">Middle</string>
-    <string name="boilerstarting">Boiler</string>
-    <string name="baselinecrossheading">Baseline</string>
-    <string name="successbaseline">Success</string>
-    <string name="failbaseline">Fail</string>
-    <string name="autongearheading">Auton Gear</string>
-    <string name="feederautongear">Feeder</string>
-    <string name="middleautongear">Middle</string>
-    <string name="boilerautongear">Boiler</string>
-    <string name="noautongear">None</string>
-    <string name="highautonfuel">High Auton Fuel</string>
-    <string name="lowautonfuel">Low Auton Fuel</string>
-    <string name="activatedhopper">Activated Hopper</string>
-    <string name="savebutton">Save</string>
+    <string name="app_name">107 Scouting System</string>
+
+    <!--Auton Strings-->
+    <string name="teamNumberHeading">Team Number</string>
+    <string name="matchNumberHeading">Match Number</string>
+    <string name="startingLocationHeading">Starting Location</string>
+    <string name="feederStarting">Feeder</string>
+    <string name="middleStarting">Middle</string>
+    <string name="boilerStarting">Boiler</string>
+    <string name="baselineCrossHeading">Baseline</string>
+    <string name="successBaseline">Success</string>
+    <string name="failBaseline">Fail</string>
+    <string name="autonGearHeading">Auton Gear</string>
+    <string name="feederAutonGear">Feeder</string>
+    <string name="middleAutonGear">Middle</string>
+    <string name="boilerAutonGear">Boiler</string>
+    <string name="noAutonGear">None</string>
+    <string name="highAutonFuelScored">High Auton Fuel Scored</string>
+    <string name="highAutonFuelMissed">High Auton Fuel Missed</string>
+    <string name="lowAutonFuel">Low Auton Fuel</string>
+    <string name="activatedHopper">Activated Hopper</string>
+    <string name="saveButton">Save</string>
+
+    <!--Teleop Strings-->
+    <string name="teleopGearPlacedHeading">Gears Placed</string>
+    <string name="teleopGearDropHeading">Gears Dropped</string>
+    <string name="gearPlacementHeading">Gear Placement</string>
+    <string name="activeGearPlacement">Active</string>
+    <string name="passiveGearGearPlacement">Passive</string>
+    <string name="teleopHighFuelScoredHeading">High Fuel Scored</string>
+    <string name="teleopHighFuelMissedHeading">High Fuel Missed</string>
+    <string name="teleopLowFuelHeading">Low Fuel</string>
+    <string name="fuelRetrievalHeading">Fuel Retrieval Location</string>
+    <string name="floorFuelRetrieval">Floor</string>
+    <string name="hopperFuelRetrieval">Hopper</string>
+    <string name="chuteFuelRetrieval">Chute</string>
+    <string name="noFuelRetrieval">None</string>
+    <string name="gearRetrievalHeading">Gear Retrieval Location</string>
+    <string name="floorGearRetrieval">Floor</string>
+    <string name="hopperGearRetrieval">Hopper</string>
+    <string name="noGearRetrieval">None</string>
+    <string name="climbingHeading">Climb</string>
+    <string name="successClimb">Success</string>
+    <string name="failClimb">Fail</string>
+    <string name="noClimb">None</string>
+    <string name="climbTimeHeading">Climb Time</string>
+    <string name="defenseHeading">Defense</string>
+    <string name="effectiveDefense">Good</string>
+    <string name="ineffectiveDefense">Bad</string>
+    <string name="receivedFoulsDefense">Too Much</string>
+    <string name="noDefense">NA</string>
+    <string name="fouls">Fouls</string>
 </resources>
