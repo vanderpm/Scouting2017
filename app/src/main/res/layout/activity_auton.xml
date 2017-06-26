@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ScrollView01"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,21 +22,33 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/teamNumberHeading"/>
-            <EditText
-                android:id="@+id/TeamNumber_input"
-                android:layout_width="fill_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TeamNumber_input_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/TeamNumber_input"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
             <TextView
                 android:id="@+id/MatchNumber_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/matchNumberHeading"/>
-            <EditText
-                android:id="@+id/MatchNumber_input"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/MatchNumber_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/MatchNumber_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -47,27 +59,28 @@
                 android:layout_height="wrap_content"
                 android:text="@string/startingLocationHeading"/>
         </LinearLayout>
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/StartingLocation_RadiobtnGrp"
-                android:layout_width="fill_parent"
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/StartingLocation_RadiobtnGrp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/FeederStartingLocation_Radiobtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/FeederStartingLocation_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/feederStarting"/>
-                <RadioButton
-                    android:id="@+id/MiddleStartingLocation_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/middleStarting"/>
-                <RadioButton
-                    android:id="@+id/BoilerStartingLocation_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/boilerStarting"/>
-            </RadioGroup>
+                android:checked="true"
+                android:text="@string/feederStarting"/>
+            <RadioButton
+                android:id="@+id/MiddleStartingLocation_Radiobtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/middleStarting"/>
+            <RadioButton
+                android:id="@+id/BoilerStartingLocation_Radiobtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boilerStarting"/>
+        </RadioGroup>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -77,53 +90,55 @@
                 android:layout_height="wrap_content"
                 android:text="@string/baselineCrossHeading"/>
         </LinearLayout>
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/BaseLine_RadiobtnGrp"
-                android:layout_width="fill_parent"
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/BaseLine_RadiobtnGrp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/SuccessBaseline_Radiobtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/SuccessBaseline_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/successBaseline"/>
-                <RadioButton
-                    android:id="@+id/FailBaseline_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/failBaseline"/>
-            </RadioGroup>
+                android:text="@string/successBaseline"/>
+            <RadioButton
+                android:id="@+id/FailBaseline_Radiobtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/failBaseline"/>
+        </RadioGroup>
         <TextView
             android:id="@+id/AutonGear_TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/autonGearHeading"/>
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/AutonGear_RadiobtnGrp"
-                android:layout_width="fill_parent"
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/AutonGear_RadiobtnGrp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/FeederAutonGear_Radiobtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/FeederAutonGear_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/feederAutonGear"/>
-                <RadioButton
-                    android:id="@+id/MiddleAutonGear_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/middleAutonGear"/>
-                <RadioButton
-                    android:id="@+id/BoilerAutonGear_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/boilerAutonGear"/>
-                <RadioButton
-                    android:id="@+id/NoAutonGear_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/noAutonGear"/>
-            </RadioGroup>
+                android:text="@string/feederAutonGear"/>
+            <RadioButton
+                android:id="@+id/MiddleAutonGear_Radiobtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/middleAutonGear"/>
+            <RadioButton
+                android:id="@+id/BoilerAutonGear_Radiobtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boilerAutonGear"/>
+            <RadioButton
+                android:id="@+id/NoAutonGear_Radiobtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/noAutonGear"/>
+        </RadioGroup>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,31 +151,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/highAutonFuelScored"/>
-            <EditText
-                android:id="@+id/AutonHighFuelScored_input"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/AutonHighFuelScored_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/AutonHighFuelScored_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
             <TextView
                 android:id="@+id/AutonHighFuel_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/highAutonFuelMissed"/>
-            <EditText
-                android:id="@+id/AutonHighFuelMissed_input"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/AutonHighFuelMissed_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/AutonHighFuelMissed_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
             <TextView
                 android:id="@+id/AutonLowFuel_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lowAutonFuel"/>
-            <EditText
-                android:id="@+id/AutonLowFuel_input"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/AutonLowFuel_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                app:errorEnabled="true">
+                <EditText
+                    android:id="@+id/AutonLowFuel_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -174,21 +207,12 @@
                 android:id="@+id/ActivatedHopper_chkbx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/Save_btn"
-                android:layout_height="wrap_content"
-                android:text="@string/saveButton"
-                android:onClick="saveData"
-                android:layout_width="fill_parent">
-            </Button>
         </LinearLayout>
         <Button
-            android:id="@+id/button1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Click me to another screen" />
-    </LinearLayout>
-
-</ScrollView>
-
-
+        android:id="@+id/nextButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+            android:onClick="moveToTeleop"
+        android:text="Click me to another screen" />
+        </LinearLayout>
+    </ScrollView>
