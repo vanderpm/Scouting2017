@@ -2,6 +2,7 @@ package com.example.vande.scouting2017;
 
 import android.os.Environment;
 
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,33 +30,64 @@ import java.io.FileOutputStream;
 
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class TeleopActivity extends AppCompatActivity {
 
     public String heading, auton, teleop, message;
 
-    public TextInputLayout  teleopGearPlacedInputLayout,
-            teleopGearDroppedInputLayout,
-            teleopHighFuelScoredInputLayout,
-            teleopHighFuelMissedInputLayout,
-            teleopLowFuelInputLayout,
-            climbTimeInputLayout;
+    @BindView(R.id.teleopGearPlaced_input_layout)
+    public TextInputLayout  teleopGearPlacedInputLayout;
 
+    @BindView(R.id.teleopGearDropped_input_layout)
+    public TextInputLayout teleopGearDroppedInputLayout;
 
+    @BindView(R.id.teleopHighFuelScored_input_layout)
+    public TextInputLayout teleopHighFuelScoredInputLayout;
 
-    public EditText teleopGearPlaced_input,
-            teleopGearDropped_input,
-            teleopHighFuelScored_input,
-            teleopHighFuelMissed_input,
-            teleopLowFuel_input,
-            climbTime_input;
+    @BindView(R.id.teleopHighFuelMissed_input_layout)
+    public TextInputLayout teleopHighFuelMissedInputLayout;
 
-    public RadioGroup gearPlacement_RadiobtnGrp,
-            fuelRetrieval_RadiobtnGrp,
-            gearRetrieval_RadiobtnGrp,
-            climbing_RadiobtnGrp,
-            defense_RadiobtnGrp;
+    @BindView(R.id.teleopLowFuel_input_layout)
+    public TextInputLayout teleopLowFuelInputLayout;
+
+    @BindView(R.id.climbTime_input_layout)
+    public TextInputLayout climbTimeInputLayout;
+
+    @BindView(R.id.teleopGearPlaced_input)
+    public TextInputEditText teleopGearPlacedInput;
+
+    @BindView(R.id.teleopGearDropped_input)
+    public TextInputEditText teleopGearDroppedInput;
+
+    @BindView(R.id.teleopHighFuelScored_input)
+    public TextInputEditText teleopHighFuelScoredInput;
+
+    @BindView(R.id.teleopHighFuelMissed_input)
+    public TextInputEditText teleopHighFuelMissedInput;
+
+    @BindView(R.id.teleopLowFuel_input)
+    public TextInputEditText teleopLowFuelInput;
+
+    @BindView(R.id.climbTime_input)
+    public TextInputEditText climbTimeInput;
+
+    @BindView(R.id.gearPlacement_RadiobtnGrp)
+    public RadioGroup gearPlacementRadiobtnGrp;
+
+    @BindView(R.id.fuelRetrieval_RadiobtnGrp)
+    public RadioGroup fuelRetrievalRadiobtnGrp;
+
+    @BindView(R.id.gearRetrieval_RadiobtnGrp)
+    public RadioGroup gearRetrievalRadiobtnGrp;
+
+    @BindView(R.id.climbing_RadiobtnGrp)
+    public RadioGroup climbingRadiobtnGrp;
+
+    @BindView(R.id.defense_RadiobtnGrp)
+    public RadioGroup defenseRadiobtnGrp;
 
     RadioButton gearPlacement_Radiobtn,
             fuelRetreival_Radiobtn,
@@ -63,47 +95,21 @@ public class TeleopActivity extends AppCompatActivity {
             climbing_Radiobtn,
             defense_Radiobtn;
 
-    Button save_btn;
+    @BindView(R.id.save_btn)
+    public Button saveBtn;
 
-
-
-
-    public CheckBox fouls_chbx;
+@BindView(R.id.fouls_chkbx)
+    public CheckBox foulsChbx;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teleop);
-        //Numeric data field
-
-        teleopGearPlacedInputLayout = (TextInputLayout) findViewById(R.id.TeleopGearPlaced_input_layout);
-        teleopGearDroppedInputLayout = (TextInputLayout) findViewById(R.id.TeleopGearDropped_input_layout);
-        teleopHighFuelScoredInputLayout = (TextInputLayout) findViewById(R.id.TeleopHighFuelScored_input_layout);
-        teleopHighFuelMissedInputLayout = (TextInputLayout) findViewById(R.id.TeleopHighFuelMissed_input_layout);
-        teleopLowFuelInputLayout = (TextInputLayout) findViewById(R.id.TeleopLowFuel_input_layout);
-        climbTimeInputLayout = (TextInputLayout) findViewById(R.id.ClimbTime_input_layout);
 
 
-
-        teleopGearPlaced_input = (EditText) findViewById(R.id.TeleopGearPlaced_input);
-        teleopGearDropped_input = (EditText) findViewById(R.id.TeleopGearDropped_input);
-        teleopHighFuelScored_input = (EditText) findViewById(R.id.TeleopHighFuelScored_input);
-        teleopHighFuelMissed_input = (EditText) findViewById(R.id.TeleopHighFuelMissed_input);
-        teleopLowFuel_input = (EditText) findViewById(R.id.TeleopLowFuel_input);
-        climbTime_input = (EditText) findViewById(R.id.ClimbTime_input);
-
-
-        //Radio button Groups
-        gearPlacement_RadiobtnGrp = (RadioGroup)findViewById(R.id.GearPlacement_RadiobtnGrp);
-        fuelRetrieval_RadiobtnGrp = (RadioGroup) findViewById(R.id.FuelRetrieval_RadiobtnGrp);
-        gearRetrieval_RadiobtnGrp = (RadioGroup) findViewById(R.id.GearRetrieval_RadiobtnGrp);
-        climbing_RadiobtnGrp = (RadioGroup) findViewById(R.id.Climbing_RadiobtnGrp);
-        defense_RadiobtnGrp = (RadioGroup) findViewById(R.id.Defense_RadiobtnGrp);
+        ButterKnife.bind(this);
         //Save Data button
-        save_btn = (Button) findViewById(R.id.Save_btn);
-
-        fouls_chbx = (CheckBox) findViewById(R.id.Fouls_chkbx);
 
         Bundle bundle = getIntent().getExtras();
         auton = bundle.getString("auton");
@@ -133,11 +139,11 @@ public class TeleopActivity extends AppCompatActivity {
         climbTimeInputLayout.setErrorEnabled(false);
 
 
-        selectedGearPlacement = gearPlacement_RadiobtnGrp.getCheckedRadioButtonId();
-        selectedFuelRetrieval = fuelRetrieval_RadiobtnGrp.getCheckedRadioButtonId();
-        selectedGearRetrieval = gearRetrieval_RadiobtnGrp.getCheckedRadioButtonId();
-        selectedClimbing= climbing_RadiobtnGrp.getCheckedRadioButtonId();
-        selectedDefense = defense_RadiobtnGrp.getCheckedRadioButtonId();
+        selectedGearPlacement = gearPlacementRadiobtnGrp.getCheckedRadioButtonId();
+        selectedFuelRetrieval = fuelRetrievalRadiobtnGrp.getCheckedRadioButtonId();
+        selectedGearRetrieval = gearRetrievalRadiobtnGrp.getCheckedRadioButtonId();
+        selectedClimbing= climbingRadiobtnGrp.getCheckedRadioButtonId();
+        selectedDefense = defenseRadiobtnGrp.getCheckedRadioButtonId();
 
 
         gearPlacement_Radiobtn = (RadioButton) findViewById(selectedGearPlacement);
@@ -179,8 +185,8 @@ public class TeleopActivity extends AppCompatActivity {
                         "teleopHighFuelScored,"+
                         "teleopHighFuelMissed,"+
                         "teleopLowFuel,"+
-                        "fuelRetreival,"+
-                        "gearRetreival,"+
+                        "fuelRetrieval,"+
+                        "gearRetrieval,"+
                         "climbing,"+
                         "climbTime,"+
                         "defense\n";
@@ -190,16 +196,16 @@ public class TeleopActivity extends AppCompatActivity {
                 heading = "";
             }
 
-                teleop = teleopGearPlaced_input.getText().toString()+","+
+                teleop = teleopGearPlacedInput.getText().toString()+","+
                         gearPlacement_Radiobtn.getText()+","+
-                        teleopGearDropped_input.getText().toString()+","+
-                        teleopHighFuelScored_input.getText().toString()+","+
-                        teleopHighFuelMissed_input.getText().toString()+","+
-                        teleopLowFuel_input.getText().toString()+","+
+                        teleopGearDroppedInput.getText().toString()+","+
+                        teleopHighFuelScoredInput.getText().toString()+","+
+                        teleopHighFuelMissedInput.getText().toString()+","+
+                        teleopLowFuelInput.getText().toString()+","+
                         fuelRetreival_Radiobtn.getText()+","+
                         gearRetreival_Radiobtn.getText()+","+
                         climbing_Radiobtn.getText()+","+
-                        climbTime_input.getText().toString()+","+
+                        climbTimeInput.getText().toString()+","+
                         defense_Radiobtn.getText();
 
 
@@ -231,25 +237,25 @@ public class TeleopActivity extends AppCompatActivity {
 
     public void clearData(View view){
 
-        teleopGearPlaced_input.setText("");
-        gearPlacement_RadiobtnGrp.check(R.id.PassiveGearPlacement_btn);
-        teleopGearDropped_input.setText("");
-        teleopHighFuelScored_input.setText("");
-        teleopHighFuelMissed_input.setText("");
-        teleopLowFuel_input.setText("");
-        fuelRetrieval_RadiobtnGrp.check(R.id.NoFuelRetrieval_btn);
-        gearRetrieval_RadiobtnGrp.check(R.id.NoGearRetrieval_btn);
-        climbing_RadiobtnGrp.check(R.id.FailClimb_btn);
-        climbTime_input.setText("");
-        defense_RadiobtnGrp.check(R.id.NoDefense_btn);
+        teleopGearPlacedInput.setText("");
+        gearPlacementRadiobtnGrp.check(R.id.passiveGearPlacement_btn);
+        teleopGearDroppedInput.setText("");
+        teleopHighFuelScoredInput.setText("");
+        teleopHighFuelMissedInput.setText("");
+        teleopLowFuelInput.setText("");
+        fuelRetrievalRadiobtnGrp.check(R.id.noFuelRetrieval_btn);
+        gearRetrievalRadiobtnGrp.check(R.id.noGearRetrieval_btn);
+        climbingRadiobtnGrp.check(R.id.failClimb_btn);
+        climbTimeInput.setText("");
+        defenseRadiobtnGrp.check(R.id.noDefense_btn);
     }
 
 
 
     private boolean teleopGearPlaced(){
-        if(teleopGearPlaced_input.getText().toString().trim().isEmpty()){
+        if(teleopGearPlacedInput.getText().toString().trim().isEmpty()){
             teleopGearPlacedInputLayout.setError("Enter Gear Count");
-            requestFocus(teleopGearPlaced_input);
+            requestFocus(teleopGearPlacedInput);
             return false;
         }else{
             teleopGearPlacedInputLayout.setErrorEnabled(false);
@@ -258,9 +264,9 @@ public class TeleopActivity extends AppCompatActivity {
     }
 
     private boolean teleopGearDropped(){
-        if(teleopGearDropped_input.getText().toString().trim().isEmpty()){
+        if(teleopGearDroppedInput.getText().toString().trim().isEmpty()){
             teleopGearDroppedInputLayout.setError("Enter Gear Count");
-            requestFocus(teleopGearDropped_input);
+            requestFocus(teleopGearDroppedInput);
             return false;
         }else{
             teleopGearDroppedInputLayout.setErrorEnabled(false);
@@ -269,9 +275,9 @@ public class TeleopActivity extends AppCompatActivity {
     }
 
     private boolean teleopHighFuelScored(){
-        if(teleopHighFuelScored_input.getText().toString().trim().isEmpty()){
+        if(teleopHighFuelScoredInput.getText().toString().trim().isEmpty()){
             teleopHighFuelScoredInputLayout.setError("Enter Fuel Count");
-            requestFocus(teleopHighFuelScored_input);
+            requestFocus(teleopHighFuelScoredInput);
             return false;
         }else{
             teleopHighFuelScoredInputLayout.setErrorEnabled(false);
@@ -280,9 +286,9 @@ public class TeleopActivity extends AppCompatActivity {
     }
 
     private boolean teleopHighFuelMissed(){
-        if(teleopHighFuelMissed_input.getText().toString().trim().isEmpty()){
+        if(teleopHighFuelMissedInput.getText().toString().trim().isEmpty()){
             teleopHighFuelMissedInputLayout.setError("Enter Fuel Count");
-            requestFocus(teleopHighFuelMissed_input);
+            requestFocus(teleopHighFuelMissedInput);
             return false;
         }else{
             teleopHighFuelMissedInputLayout.setErrorEnabled(false);
@@ -291,9 +297,9 @@ public class TeleopActivity extends AppCompatActivity {
     }
 
     private boolean teleopLowFuel(){
-        if(teleopLowFuel_input.getText().toString().trim().isEmpty()){
+        if(teleopLowFuelInput.getText().toString().trim().isEmpty()){
             teleopLowFuelInputLayout.setError("Enter Fuel Count");
-            requestFocus(teleopLowFuel_input);
+            requestFocus(teleopLowFuelInput);
             return false;
         }else{
             teleopLowFuelInputLayout.setErrorEnabled(false);
@@ -302,9 +308,9 @@ public class TeleopActivity extends AppCompatActivity {
     }
 
     private boolean climbTime() {
-        if (climbTime_input.getText().toString().trim().isEmpty()) {
+        if (climbTimeInput.getText().toString().trim().isEmpty()) {
             climbTimeInputLayout.setError("Enter Climb Time");
-            requestFocus(climbTime_input);
+            requestFocus(climbTimeInput);
             return false;
         } else {
             climbTimeInputLayout.setErrorEnabled(false);

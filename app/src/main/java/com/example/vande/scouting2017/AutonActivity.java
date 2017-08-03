@@ -23,32 +23,57 @@ import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class AutonActivity extends AppCompatActivity {
 
     public String heading, auton, message;
 
-    public TextInputLayout
-    teamNumberInputLayout,
-    matchNumberInputLayout,
-    autonHighFuelScoredInputLayout,
-    autonHighFuelMissedInputLayout,
-    autonLowFuelInputLayout;
+    @BindView(R.id.teamNumber_input_layout)
+    public TextInputLayout teamNumberInputLayout;
 
-    public EditText teamNumber_input,
-            matchNumber_input,
-            autonHighFuelScored_input,
-            autonHighFuelMissed_input,
-            autonLowFuel_input;
+    @BindView(R.id.matchNumber_input_layout)
+    public TextInputLayout matchNumberInputLayout;
 
-    public RadioGroup startingLocation_RadiobtnGrp,
-            baseLine_RadiobtnGrp,
-            autonGear_RadiobtnGrp;
+    @BindView(R.id.autonHighFuelScored_input_layout)
+    public TextInputLayout autonHighFuelScoredInputLayout;
+
+    @BindView(R.id.autonHighFuelMissed_input_layout)
+    public TextInputLayout autonHighFuelMissedInputLayout;
+
+    @BindView(R.id.autonLowFuel_input_layout)
+    public TextInputLayout autonLowFuelInputLayout;
+
+    @BindView(R.id.teamNumber_input)
+    public EditText teamNumberInput;
+
+    @BindView(R.id.matchNumber_input)
+    public EditText matchNumberInput;
+
+    @BindView(R.id.autonHighFuelScored_input)
+    public EditText autonHighFuelScoredInput;
+
+    @BindView(R.id.autonHighFuelMissed_input)
+    public EditText autonHighFuelMissedInput;
+
+    @BindView(R.id.autonLowFuel_input)
+    public EditText autonLowFuelInput;
+
+    @BindView(R.id.startingLocation_RadiobtnGrp)
+    public RadioGroup startingLocationRadiobtnGrp;
+
+    @BindView(R.id.baseLine_RadiobtnGrp)
+    public RadioGroup baseLineRadiobtnGrp;
+
+    @BindView(R.id.autonGear_RadiobtnGrp)
+    public RadioGroup autonGearRadiobtnGrp;
+
 
     RadioButton startingLocation_Radiobtn, baseline_Radiobtn, autonGear_Radiobtn;
 
+    @BindView(R.id.next_button)
     public Button nextButton;
 
 
@@ -57,28 +82,12 @@ public class AutonActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_auton);
-        //Numeric data field
-        teamNumberInputLayout = (TextInputLayout) findViewById(R.id.TeamNumber_input_layout);
-        matchNumberInputLayout = (TextInputLayout) findViewById(R.id.MatchNumber_input_layout);
-        autonHighFuelScoredInputLayout = (TextInputLayout) findViewById(R.id.AutonHighFuelScored_input_layout);
-        autonHighFuelMissedInputLayout = (TextInputLayout) findViewById(R.id.AutonHighFuelMissed_input_layout);
-        autonLowFuelInputLayout = (TextInputLayout) findViewById(R.id.AutonLowFuel_input_layout);
 
 
-
-        teamNumber_input = (EditText) findViewById(R.id.TeamNumber_input);
-        matchNumber_input = (EditText) findViewById(R.id.MatchNumber_input);
-        autonHighFuelScored_input = (EditText) findViewById(R.id.AutonHighFuelScored_input);
-        autonHighFuelMissed_input = (EditText) findViewById(R.id.AutonHighFuelMissed_input);
-        autonLowFuel_input = (EditText) findViewById(R.id.AutonLowFuel_input);
-
-
-
-        //Radio button Groups
-        startingLocation_RadiobtnGrp = (RadioGroup)findViewById(R.id.StartingLocation_RadiobtnGrp);
-        baseLine_RadiobtnGrp = (RadioGroup)findViewById(R.id.BaseLine_RadiobtnGrp);
-        autonGear_RadiobtnGrp = (RadioGroup)findViewById(R.id.AutonGear_RadiobtnGrp);
+        ButterKnife.bind(this);
+        //Save Data button
 
     }
 
@@ -104,23 +113,23 @@ public class AutonActivity extends AppCompatActivity {
         autonLowFuelInputLayout.setErrorEnabled(false);
 
 
-        selectedStartingLocation = startingLocation_RadiobtnGrp.getCheckedRadioButtonId();
-        selectedBaseline = baseLine_RadiobtnGrp.getCheckedRadioButtonId();
-        selectedAutonGear = autonGear_RadiobtnGrp.getCheckedRadioButtonId();
+        selectedStartingLocation = startingLocationRadiobtnGrp.getCheckedRadioButtonId();
+        selectedBaseline = baseLineRadiobtnGrp.getCheckedRadioButtonId();
+        selectedAutonGear = autonGearRadiobtnGrp.getCheckedRadioButtonId();
 
 
         startingLocation_Radiobtn = (RadioButton) findViewById(selectedStartingLocation);
         baseline_Radiobtn = (RadioButton) findViewById(selectedBaseline);
         autonGear_Radiobtn = (RadioButton) findViewById(selectedAutonGear);
         //compile string of all data
-        auton = teamNumber_input.getText().toString() + "," +
-                matchNumber_input.getText().toString()+","+
+        auton = teamNumberInput.getText().toString() + "," +
+                matchNumberInput.getText().toString()+","+
                 startingLocation_Radiobtn.getText()+","+
                 baseline_Radiobtn.getText()+","+
                 autonGear_Radiobtn.getText()+","+
-                autonHighFuelScored_input.getText().toString()+","+
-                autonHighFuelMissed_input.getText().toString()+","+
-                autonLowFuel_input.getText().toString();
+                autonHighFuelScoredInput.getText().toString()+","+
+                autonHighFuelMissedInput.getText().toString()+","+
+                autonLowFuelInput.getText().toString();
 
 
 
@@ -134,9 +143,9 @@ public class AutonActivity extends AppCompatActivity {
     }
 
     private boolean checkTeamNumber() {
-        if (teamNumber_input.getText().toString().trim().isEmpty()) {
-            teamNumber_input.setError("Enter a Team Number");
-            requestFocus(teamNumber_input);
+        if (teamNumberInput.getText().toString().trim().isEmpty()) {
+            teamNumberInput.setError("Enter a Team Number");
+            requestFocus(teamNumberInput);
             return false;
         }else {
             teamNumberInputLayout.setErrorEnabled(false);
@@ -145,9 +154,9 @@ public class AutonActivity extends AppCompatActivity {
     }
 
     private boolean checkMatchNumber(){
-        if(matchNumber_input.getText().toString().trim().isEmpty()) {
-            matchNumberInputLayout.setError("Enter Match Number");
-            requestFocus(matchNumber_input);
+        if(matchNumberInput.getText().toString().trim().isEmpty()) {
+            matchNumberInput.setError("Enter Match Number");
+            requestFocus(matchNumberInput);
             return false;
         }else {
             matchNumberInputLayout.setErrorEnabled(false);
@@ -156,9 +165,9 @@ public class AutonActivity extends AppCompatActivity {
     }
 
     private boolean checkHighFuelScored(){
-        if(autonHighFuelScored_input.getText().toString().trim().isEmpty()){
-            autonHighFuelScoredInputLayout.setError("Enter Fuel Count");
-            requestFocus(autonHighFuelScored_input);
+        if(autonHighFuelScoredInput.getText().toString().trim().isEmpty()){
+            autonHighFuelScoredInput.setError("Enter Fuel Count");
+            requestFocus(autonHighFuelScoredInput);
             return false;
         }else{
             autonHighFuelScoredInputLayout.setErrorEnabled(false);
@@ -167,9 +176,9 @@ public class AutonActivity extends AppCompatActivity {
     }
 
     private boolean checkHighFuelMissed(){
-        if(autonHighFuelMissed_input.getText().toString().trim().isEmpty()){
-            autonHighFuelMissedInputLayout.setError("Enter Fuel Count");
-            requestFocus(autonHighFuelMissed_input);
+        if(autonHighFuelMissedInput.getText().toString().trim().isEmpty()){
+            autonHighFuelMissedInput.setError("Enter Fuel Count");
+            requestFocus(autonHighFuelMissedInput);
             return false;
         }else{
             autonHighFuelMissedInputLayout.setErrorEnabled(false);
@@ -178,9 +187,9 @@ public class AutonActivity extends AppCompatActivity {
     }
 
     private boolean autonLowFuel(){
-        if(autonLowFuel_input.getText().toString().trim().isEmpty()){
-            autonLowFuelInputLayout.setError("Enter Fuel Count");
-            requestFocus(autonLowFuel_input);
+        if(autonLowFuelInput.getText().toString().trim().isEmpty()){
+            autonLowFuelInput.setError("Enter Fuel Count");
+            requestFocus(autonLowFuelInput);
             return false;
         }else{
             autonLowFuelInputLayout.setErrorEnabled(false);

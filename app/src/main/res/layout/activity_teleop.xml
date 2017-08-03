@@ -17,135 +17,115 @@
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
-            <TextView
-                android:id="@+id/TeleopGearPlaced_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teleopGearPlacedHeading"/>
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/TeleopGearPlaced_input_layout"
+                android:id="@+id/teleopGearPlaced_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/teleopGearPlacedHeading"
                 app:errorEnabled="true">
-                <EditText
-                    android:id="@+id/TeleopGearPlaced_input"
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/teleopGearPlaced_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"/>
             </android.support.design.widget.TextInputLayout>
             <TextView
-                android:id="@+id/GearPlacement_textView"
+                android:id="@+id/gearPlacement_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/gearPlacementHeading"/>
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/GearPlacement_RadiobtnGrp"
+                android:id="@+id/gearPlacement_RadiobtnGrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton
-                    android:id="@+id/ActiveGearPlacement_btn"
+                    android:id="@+id/activeGearPlacement_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activeGearPlacement"/>
                 <RadioButton
-                    android:id="@+id/PassiveGearPlacement_btn"
+                    android:id="@+id/passiveGearPlacement_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="@string/passiveGearGearPlacement"/>
             </RadioGroup>
-            <TextView
-                android:id="@+id/TeleopGearDropped_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teleopGearDropHeading"/>
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/TeleopGearDropped_input_layout"
+                android:id="@+id/teleopGearDropped_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/teleopGearDropHeading"
                 app:errorEnabled="true">
-                <EditText
-                    android:id="@+id/TeleopGearDropped_input"
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/teleopGearDropped_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/teleopHighFuelScored_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/teleopHighFuelScoredHeading"
+                app:errorEnabled="true">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/teleopHighFuelScored_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/teleopHighFuelMissed_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/teleopHighFuelMissedHeading"
+                app:errorEnabled="true">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/teleopHighFuelMissed_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/teleopLowFuel_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/teleopLowFuelHeading"
+                app:errorEnabled="true">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/teleopLowFuel_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"/>
             </android.support.design.widget.TextInputLayout>
             <TextView
-                android:id="@+id/TeleopHighFuelScored_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teleopHighFuelScoredHeading"/>
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/TeleopHighFuelScored_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
-                <EditText
-                    android:id="@+id/TeleopHighFuelScored_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"/>
-            </android.support.design.widget.TextInputLayout>
-            <TextView
-                android:id="@+id/TeleopHighFuelMissed_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teleopHighFuelMissedHeading"/>
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/TeleopHighFuelMissed_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
-                <EditText
-                    android:id="@+id/TeleopHighFuelMissed_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"/>
-            </android.support.design.widget.TextInputLayout>
-            <TextView
-                android:id="@+id/TeleopLowFuel_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teleopLowFuelHeading"/>
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/TeleopLowFuel_input_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
-                <EditText
-                    android:id="@+id/TeleopLowFuel_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"/>
-            </android.support.design.widget.TextInputLayout>
-            <TextView
-                android:id="@+id/FuelRetrieval_textView"
+                android:id="@+id/fuelRetrieval_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fuelRetrievalHeading"/>
             <RadioGroup
-                android:id="@+id/FuelRetrieval_RadiobtnGrp"
+                android:id="@+id/fuelRetrieval_RadiobtnGrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton
-                    android:id="@+id/FloorFuelRetrieval_btn"
+                    android:id="@+id/floorFuelRetrieval_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/floorFuelRetrieval"/>
                 <RadioButton
-                    android:id="@+id/HopperFuelRetrieval_btn"
+                    android:id="@+id/hopperFuelRetrieval_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hopperFuelRetrieval"/>
                 <RadioButton
-                    android:id="@+id/ChuteFuelRetrieval_btn"
+                    android:id="@+id/chuteFuelRetrieval_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/chuteFuelRetrieval"/>
                 <RadioButton
-                    android:id="@+id/NoFuelRetrieval_btn"
+                    android:id="@+id/noFuelRetrieval_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -157,22 +137,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/gearRetrievalHeading"/>
             <RadioGroup
-                android:id="@+id/GearRetrieval_RadiobtnGrp"
+                android:id="@+id/gearRetrieval_RadiobtnGrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton
-                    android:id="@+id/FloorGearRetrieval_btn"
+                    android:id="@+id/floorGearRetrieval_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/floorGearRetrieval"/>
                 <RadioButton
-                    android:id="@+id/HopperGearRetrieval_btn"
+                    android:id="@+id/hopperGearRetrieval_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hopperGearRetrieval"/>
                 <RadioButton
-                    android:id="@+id/NoGearRetrieval_btn"
+                    android:id="@+id/noGearRetrieval_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -184,87 +164,83 @@
                 android:layout_height="wrap_content"
                 android:text="@string/climbingHeading"/>
             <RadioGroup
-                android:id="@+id/Climbing_RadiobtnGrp"
+                android:id="@+id/climbing_RadiobtnGrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton
-                    android:id="@+id/SuccessClimb_btn"
+                    android:id="@+id/successClimb_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/successClimb"/>
                 <RadioButton
-                    android:id="@+id/FailClimb_btn"
+                    android:id="@+id/failClimb_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/failClimb"/>
                 <RadioButton
-                    android:id="@+id/NoClimb_btn"
+                    android:id="@+id/noClimb_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="@string/noClimb"/>
             </RadioGroup>
-            <TextView
-                android:id="@+id/ClimbTime_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/climbTimeHeading"/>
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/ClimbTime_input_layout"
+                android:id="@+id/climbTime_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/climbTimeHeading"
                 app:errorEnabled="true">
-                <EditText
-                    android:id="@+id/ClimbTime_input"
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/climbTime_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"/>
             </android.support.design.widget.TextInputLayout>
             <TextView
-                android:id="@+id/Defense_textView"
+                android:id="@+id/defense_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/defenseHeading"/>
             <RadioGroup
-                android:id="@+id/Defense_RadiobtnGrp"
+                android:id="@+id/defense_RadiobtnGrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RadioButton
-                    android:id="@+id/EffectiveDefense_btn"
+                    android:id="@+id/effectiveDefense_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/effectiveDefense"/>
                 <RadioButton
-                    android:id="@+id/IneffectiveDefense_btn"
+                    android:id="@+id/ineffectiveDefense_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ineffectiveDefense"/>
                 <RadioButton
-                    android:id="@+id/ReceivedFoulsDefense_btn"
+                    android:id="@+id/receivedFoulsDefense_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/receivedFoulsDefense"/>
                 <RadioButton
-                    android:id="@+id/NoDefense_btn"
+                    android:id="@+id/noDefense_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="@string/noDefense"/>
             </RadioGroup>
             <TextView
-                android:id="@+id/Fouls_TextView"
+                android:id="@+id/fouls_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fouls"/>
             <CheckBox
-                android:id="@+id/Fouls_chkbx"
+                android:id="@+id/fouls_chkbx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <Button
-            android:id="@+id/Save_btn"
+            android:id="@+id/save_btn"
             android:layout_height="wrap_content"
             android:text="@string/saveButton"
             android:onClick="saveData"
@@ -273,9 +249,6 @@
     </LinearLayout>
 
 </ScrollView>
-
-
-
 
 
 
