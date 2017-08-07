@@ -52,4 +52,5 @@
     <string name="receivedFoulsDefense">Too Much</string>
     <string name="noDefense">NA</string>
     <string name="fouls">Fouls</string>
+    <string name="nextButton">Move To Teleop</string>
 </resources>
