@@ -70,6 +70,12 @@ public class AutonActivity extends AppCompatActivity {
     @BindView(R.id.autonGear_RadiobtnGrp)
     public RadioGroup autonGearRadiobtnGrp;
 
+    @BindView(R.id.autonGearSuccess_chkbx)
+    public CheckBox autonGearSuccessChkbx;
+
+    @BindView(R.id.activatedHopper_chkbx)
+    public CheckBox activatedHopperChkbx;
+
 
     RadioButton startingLocation_Radiobtn, baseline_Radiobtn, autonGear_Radiobtn;
 
@@ -98,6 +104,8 @@ public class AutonActivity extends AppCompatActivity {
 
         //Auton Get current standing of radio buttons
         int selectedStartingLocation, selectedBaseline, selectedAutonGear;
+        String autonGearSuccessString;
+        String activatedHopperString;
 
         if(!checkTeamNumber()) {return;}
         if(!checkMatchNumber()) {return;}
@@ -117,6 +125,18 @@ public class AutonActivity extends AppCompatActivity {
         selectedBaseline = baseLineRadiobtnGrp.getCheckedRadioButtonId();
         selectedAutonGear = autonGearRadiobtnGrp.getCheckedRadioButtonId();
 
+        if(autonGearSuccessChkbx.isChecked()){
+            autonGearSuccessString = "true";
+        }else
+            autonGearSuccessString = "false";
+
+
+        if(activatedHopperChkbx.isChecked()){
+            activatedHopperString = "true";
+        }else
+            activatedHopperString = "false";
+
+
 
         startingLocation_Radiobtn = (RadioButton) findViewById(selectedStartingLocation);
         baseline_Radiobtn = (RadioButton) findViewById(selectedBaseline);
@@ -127,9 +147,11 @@ public class AutonActivity extends AppCompatActivity {
                 startingLocation_Radiobtn.getText()+","+
                 baseline_Radiobtn.getText()+","+
                 autonGear_Radiobtn.getText()+","+
+                autonGearSuccessString+","+
                 autonHighFuelScoredInput.getText().toString()+","+
                 autonHighFuelMissedInput.getText().toString()+","+
-                autonLowFuelInput.getText().toString();
+                autonLowFuelInput.getText().toString()+","+
+                activatedHopperString;
 
 
 

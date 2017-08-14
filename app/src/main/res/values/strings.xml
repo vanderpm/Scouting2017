@@ -28,6 +28,7 @@
     <string name="teleopGearDropHeading">Gears Dropped</string>
     <string name="gearPlacementHeading">Gear Placement</string>
     <string name="activeGearPlacement">Active</string>
+    <string name="autonGearSuccessHeading">Auton Gear Success</string>
     <string name="passiveGearGearPlacement">Passive</string>
     <string name="teleopHighFuelScoredHeading">High Fuel Scored</string>
     <string name="teleopHighFuelMissedHeading">High Fuel Missed</string>

@@ -165,7 +165,7 @@ public class TeleopActivity extends AppCompatActivity {
 
         if(Environment.MEDIA_MOUNTED.equals(state)){
             File Root = Environment.getExternalStorageDirectory();
-            File Dir = new File(Root.getAbsoluteFile()+"/MyAppFile");
+            File Dir = new File(Root.getAbsoluteFile()+"/Documents");
             //create csv file
             File file = new File(Dir,"MyMessage.csv");
 
@@ -176,9 +176,11 @@ public class TeleopActivity extends AppCompatActivity {
                         "startingLocation," +
                         "baseline," +
                         "autonGear," +
+                        "autonGearSuccess,"+
                         "autonHighFuelScored," +
                         "autonHighFuelMissed," +
                         "autonLowFuel,"+
+                        "activatedHopper,"+
                         "teleopGearPlaced,"+
                         "gearPlacement,"+
                         "teleopGearDropped,"+
