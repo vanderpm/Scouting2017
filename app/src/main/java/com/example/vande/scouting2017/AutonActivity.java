@@ -78,7 +78,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     @BindView(R.id.next_button)
     public Button nextButton;
 
-    private ArrayList<CharSequence> dataStringList;
+    private ArrayList<CharSequence> autonDataStringList;
 
 
     @Override
@@ -89,7 +89,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
 
 
         ButterKnife.bind(this);
-        dataStringList = new ArrayList<>();
+        autonDataStringList = new ArrayList<>();
 
     }
 
@@ -97,7 +97,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     protected void onResume(){
         super.onResume();
 
-        dataStringList.clear();
+        autonDataStringList.clear();
 
         teamNumberInput.setOnKeyListener(this);
         matchNumberInput.setOnKeyListener(this);
@@ -156,7 +156,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
 
 
 
-    public void moveToTeleop(View view) {
+    public void onShowTeleop(View view) {
 
         boolean allInputsPassed = false;
 
@@ -190,21 +190,21 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         final RadioButton baseline_Radiobtn = (RadioButton) findViewById(baseLineRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton autonGear_Radiobtn = (RadioButton) findViewById(autonGearRadiobtnGrp.getCheckedRadioButtonId());
 
-        dataStringList.add(getTextInputLayoutString(teamNumberInputLayout));
-        dataStringList.add(getTextInputLayoutString(matchNumberInputLayout));
-        dataStringList.add(startingLocation_Radiobtn.getText());
-        dataStringList.add(baseline_Radiobtn.getText());
-        dataStringList.add(autonGear_Radiobtn.getText());
-        dataStringList.add(getTextInputLayoutString(autonHighFuelScoredInputLayout));
-        dataStringList.add(getTextInputLayoutString(autonHighFuelMissedInputLayout));
-        dataStringList.add(getTextInputLayoutString(autonLowFuelInputLayout));
-        dataStringList.add(autonGearSuccessString);
-        dataStringList.add(activatedHopperString);
+        autonDataStringList.add(getTextInputLayoutString(teamNumberInputLayout));
+        autonDataStringList.add(getTextInputLayoutString(matchNumberInputLayout));
+        autonDataStringList.add(startingLocation_Radiobtn.getText());
+        autonDataStringList.add(baseline_Radiobtn.getText());
+        autonDataStringList.add(autonGear_Radiobtn.getText());
+        autonDataStringList.add(getTextInputLayoutString(autonHighFuelScoredInputLayout));
+        autonDataStringList.add(getTextInputLayoutString(autonHighFuelMissedInputLayout));
+        autonDataStringList.add(getTextInputLayoutString(autonLowFuelInputLayout));
+        autonDataStringList.add(autonGearSuccessString);
+        autonDataStringList.add(activatedHopperString);
 
 
 
         final Intent intent = new Intent(this, TeleopActivity.class);
-        intent.putExtra(AUTON_STRING_EXTRA, FormatStringUtils.addDelimiter(dataStringList, ","));
+        intent.putExtra(AUTON_STRING_EXTRA, FormatStringUtils.addDelimiter(autonDataStringList, ","));
         startActivity(intent);
 
     }
