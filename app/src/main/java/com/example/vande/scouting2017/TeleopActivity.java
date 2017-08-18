@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -39,7 +40,7 @@ import utils.StringUtils;
 import utils.ViewUtils;
 
 
-public class TeleopActivity extends AppCompatActivity {
+public class TeleopActivity extends AppCompatActivity implements View.OnKeyListener {
 
     public String heading, auton, teleop, message;
 
@@ -94,11 +95,10 @@ public class TeleopActivity extends AppCompatActivity {
     @BindView(R.id.defense_RadiobtnGrp)
     public RadioGroup defenseRadiobtnGrp;
 
-
     @BindView(R.id.save_btn)
     public Button saveBtn;
 
-@BindView(R.id.fouls_chkbx)
+    @BindView(R.id.fouls_chkbx)
     public CheckBox foulsChbx;
 
     private ArrayList<CharSequence> headingDataStringList;
@@ -110,14 +110,77 @@ public class TeleopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teleop);
 
-
         ButterKnife.bind(this);
-        //Save Data button
 
         Bundle bundle = getIntent().getExtras();
         auton = bundle.getString("auton_extra");
 
+        headingDataStringList = new ArrayList<>();
+        teleopDataStringList = new ArrayList<>();
 
+    }
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        teleopDataStringList.clear();
+
+        teleopGearPlacedInput.setOnKeyListener(this);
+        teleopGearDroppedInput.setOnKeyListener(this);
+        teleopHighFuelScoredInput.setOnKeyListener(this);
+        teleopHighFuelMissedInput.setOnKeyListener(this);
+        climbTimeInput.setOnKeyListener(this);
+
+    }
+
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        teleopGearPlacedInput.setOnKeyListener(null);
+        teleopGearDroppedInput.setOnKeyListener(null);
+        teleopHighFuelScoredInput.setOnKeyListener(null);
+        teleopHighFuelMissedInput.setOnKeyListener(null);
+        climbTimeInput.setOnKeyListener(null);
+    }
+
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event){
+
+        if(keyCode != KeyEvent.KEYCODE_SPACE && keyCode != KeyEvent.KEYCODE_TAB){
+            TextInputEditText inputEditText = (TextInputEditText) v;
+
+            if (inputEditText != null){
+
+                switch (inputEditText.getId()){
+
+                    case R.id.teleopGearPlaced_input:
+                        teleopGearPlacedInputLayout.setError(null);
+                        break;
+
+                    case R.id.teleopGearDropped_input:
+                        teleopGearDroppedInputLayout.setError(null);
+                        break;
+
+                    case R.id.teleopHighFuelScored_input:
+                        teleopHighFuelScoredInputLayout.setError(null);
+                        break;
+
+                    case R.id.teleopHighFuelMissed_input:
+                        teleopHighFuelMissedInputLayout.setError(null);
+                        break;
+
+                    case R.id.climbTime_input:
+                        climbTimeInputLayout.setError(null);
+                        break;
+                }
+            }
+        }
+        return false;
     }
 
     public void saveData(View view) throws IOException {
@@ -167,25 +230,25 @@ public class TeleopActivity extends AppCompatActivity {
             if(!file.exists()){
                 headingDataStringList.add("teamNumber");
                 headingDataStringList.add("matchNumber");
-                headingDataStringList.add("startingLocation," );
-                headingDataStringList.add("baseline," );
-                headingDataStringList.add("autonGear," );
-                headingDataStringList.add("autonGearSuccess,");
-                headingDataStringList.add("autonHighFuelScored," );
-                headingDataStringList.add("autonHighFuelMissed," );
-                headingDataStringList.add("autonLowFuel,");
-                headingDataStringList.add("activatedHopper,");
-                headingDataStringList.add("teleopGearPlaced,");
-                headingDataStringList.add("gearPlacement,");
-                headingDataStringList.add("teleopGearDropped,");
-                headingDataStringList.add("teleopHighFuelScored,");
-                headingDataStringList.add("teleopHighFuelMissed,");
-                headingDataStringList.add("teleopLowFuel,");
-                headingDataStringList.add("fuelRetrieval,");
-                headingDataStringList.add("gearRetrieval,");
-                headingDataStringList.add("climbing,");
-                headingDataStringList.add("climbTime,");
-                headingDataStringList.add("defense\n");
+                headingDataStringList.add("startingLocation" );
+                headingDataStringList.add("baseline" );
+                headingDataStringList.add("autonGear" );
+                headingDataStringList.add("autonGearSuccess");
+                headingDataStringList.add("autonHighFuelScored" );
+                headingDataStringList.add("autonHighFuelMissed" );
+                headingDataStringList.add("autonLowFuel");
+                headingDataStringList.add("activatedHopper");
+                headingDataStringList.add("teleopGearPlaced");
+                headingDataStringList.add("gearPlacement");
+                headingDataStringList.add("teleopGearDropped");
+                headingDataStringList.add("teleopHighFuelScored");
+                headingDataStringList.add("teleopHighFuelMissed");
+                headingDataStringList.add("teleopLowFuel");
+                headingDataStringList.add("fuelRetrieval");
+                headingDataStringList.add("gearRetrieval");
+                headingDataStringList.add("climbing");
+                headingDataStringList.add("climbTime");
+                headingDataStringList.add("defense");
             }
             else{
                 //empty header as the are already created
@@ -205,8 +268,8 @@ public class TeleopActivity extends AppCompatActivity {
             teleopDataStringList.add(getTextInputLayoutString(climbTimeInputLayout));
             teleopDataStringList.add(defense_Radiobtn.getText());
 
-            String message = FormatStringUtils.addDelimiter(headingDataStringList, ",") +
-                    "\n" + auton + FormatStringUtils.addDelimiter(teleopDataStringList, "'");
+            String message = FormatStringUtils.addDelimiter(headingDataStringList, ",") + "\n"+
+                    auton +","+ FormatStringUtils.addDelimiter(teleopDataStringList, ",");
 
 
 //                message = heading + auton +","+ teleop + "\n";

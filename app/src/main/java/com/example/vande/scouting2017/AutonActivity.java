@@ -73,8 +73,6 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     public CheckBox activatedHopperChkbx;
 
 
-
-
     @BindView(R.id.next_button)
     public Button nextButton;
 

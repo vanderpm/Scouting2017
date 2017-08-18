@@ -23,6 +23,15 @@
     <string name="activatedHopper">Activated Hopper</string>
     <string name="saveButton">Save</string>
 
+
+    <!--Auton Error Strings-->
+
+    <string name="teamNumberError">Enter in Team Number</string>
+    <string name="matchNumberError">Enter in Match Number</string>
+    <string name="autonHighFuelScoredError">Enter Fuel count</string>
+    <string name="autonHighFuelMissedError">Enter Fuel count</string>
+    <string name="autonLowFuelError">Enter Fuel count</string>
+
     <!--Teleop Strings-->
     <string name="teleopGearPlacedHeading">Gears Placed</string>
     <string name="teleopGearDropHeading">Gears Dropped</string>
@@ -54,4 +63,10 @@
     <string name="noDefense">NA</string>
     <string name="fouls">Fouls</string>
     <string name="nextButton">Move To Teleop</string>
+
+
+    <!--Teleop Error Strings-->
+
+
+
 </resources>
