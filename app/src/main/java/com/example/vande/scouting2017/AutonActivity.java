@@ -1,35 +1,31 @@
 package com.example.vande.scouting2017;
 
-import android.os.Environment;
-
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import android.view.View;
-import android.view.View.OnClickListener;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import utils.FormatStringUtils;
+import utils.StringUtils;
+import utils.ViewUtils;
 
 
-public class AutonActivity extends AppCompatActivity {
+public class AutonActivity extends AppCompatActivity implements View.OnKeyListener {
 
-    public String heading, auton, message;
+    public static String AUTON_STRING_EXTRA = "auton_extra";
 
     @BindView(R.id.teamNumber_input_layout)
     public TextInputLayout teamNumberInputLayout;
@@ -77,12 +73,10 @@ public class AutonActivity extends AppCompatActivity {
     public CheckBox activatedHopperChkbx;
 
 
-    RadioButton startingLocation_Radiobtn, baseline_Radiobtn, autonGear_Radiobtn;
-
     @BindView(R.id.next_button)
     public Button nextButton;
 
-
+    private ArrayList<CharSequence> autonDataStringList;
 
 
     @Override
@@ -93,137 +87,129 @@ public class AutonActivity extends AppCompatActivity {
 
 
         ButterKnife.bind(this);
-        //Save Data button
+        autonDataStringList = new ArrayList<>();
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
 
+        autonDataStringList.clear();
 
-    public void moveToTeleop(View view) {
-        final Context context = this;
-
-        //Auton Get current standing of radio buttons
-        int selectedStartingLocation, selectedBaseline, selectedAutonGear;
-        String autonGearSuccessString;
-        String activatedHopperString;
-
-        if(!checkTeamNumber()) {return;}
-        if(!checkMatchNumber()) {return;}
-        if(!checkHighFuelScored()) {return;}
-        if(!checkHighFuelMissed()) {return;}
-        if(!autonLowFuel()) {return;}
-
-
-        teamNumberInputLayout.setErrorEnabled(false);
-        matchNumberInputLayout.setErrorEnabled(false);
-        autonHighFuelScoredInputLayout.setErrorEnabled(false);
-        autonHighFuelMissedInputLayout.setErrorEnabled(false);
-        autonLowFuelInputLayout.setErrorEnabled(false);
-
-
-        selectedStartingLocation = startingLocationRadiobtnGrp.getCheckedRadioButtonId();
-        selectedBaseline = baseLineRadiobtnGrp.getCheckedRadioButtonId();
-        selectedAutonGear = autonGearRadiobtnGrp.getCheckedRadioButtonId();
-
-        if(autonGearSuccessChkbx.isChecked()){
-            autonGearSuccessString = "true";
-        }else
-            autonGearSuccessString = "false";
-
-
-        if(activatedHopperChkbx.isChecked()){
-            activatedHopperString = "true";
-        }else
-            activatedHopperString = "false";
-
-
-
-        startingLocation_Radiobtn = (RadioButton) findViewById(selectedStartingLocation);
-        baseline_Radiobtn = (RadioButton) findViewById(selectedBaseline);
-        autonGear_Radiobtn = (RadioButton) findViewById(selectedAutonGear);
-        //compile string of all data
-        auton = teamNumberInput.getText().toString() + "," +
-                matchNumberInput.getText().toString()+","+
-                startingLocation_Radiobtn.getText()+","+
-                baseline_Radiobtn.getText()+","+
-                autonGear_Radiobtn.getText()+","+
-                autonGearSuccessString+","+
-                autonHighFuelScoredInput.getText().toString()+","+
-                autonHighFuelMissedInput.getText().toString()+","+
-                autonLowFuelInput.getText().toString()+","+
-                activatedHopperString;
-
-
-
-
-            Intent intent = new Intent(context, TeleopActivity.class);
-                intent.putExtra("auton", auton);
-            startActivity(intent);
-
-
-
+        teamNumberInput.setOnKeyListener(this);
+        matchNumberInput.setOnKeyListener(this);
+        autonHighFuelScoredInput.setOnKeyListener(this);
+        autonHighFuelMissedInput.setOnKeyListener(this);
+        autonLowFuelInput.setOnKeyListener(this);
     }
 
-    private boolean checkTeamNumber() {
-        if (teamNumberInput.getText().toString().trim().isEmpty()) {
-            teamNumberInput.setError("Enter a Team Number");
-            requestFocus(teamNumberInput);
-            return false;
-        }else {
-            teamNumberInputLayout.setErrorEnabled(false);
-            return true;
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        teamNumberInput.setOnKeyListener(null);
+        matchNumberInput.setOnKeyListener(null);
+        autonHighFuelScoredInput.setOnKeyListener(null);
+        autonHighFuelMissedInput.setOnKeyListener(null);
+        autonLowFuelInput.setOnKeyListener(null);
+    }
+
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event){
+
+        if(keyCode != KeyEvent.KEYCODE_SPACE && keyCode != KeyEvent.KEYCODE_TAB){
+            TextInputEditText inputEditText = (TextInputEditText) v;
+
+            if (inputEditText != null){
+
+                switch (inputEditText.getId()){
+
+                    case R.id.teamNumber_input:
+                        teamNumberInputLayout.setError(null);
+                        break;
+
+                    case R.id.matchNumber_input:
+                        matchNumberInputLayout.setError(null);
+                        break;
+
+                    case R.id.autonHighFuelScored_input:
+                        autonHighFuelScoredInputLayout.setError(null);
+                        break;
+
+                    case R.id.autonHighFuelMissed_input:
+                        autonHighFuelMissedInputLayout.setError(null);
+                        break;
+
+                    case R.id.autonLowFuel_input:
+                        autonHighFuelScoredInputLayout.setError(null);
+                        break;
+                }
+            }
         }
-    }
-
-    private boolean checkMatchNumber(){
-        if(matchNumberInput.getText().toString().trim().isEmpty()) {
-            matchNumberInput.setError("Enter Match Number");
-            requestFocus(matchNumberInput);
-            return false;
-        }else {
-            matchNumberInputLayout.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    private boolean checkHighFuelScored(){
-        if(autonHighFuelScoredInput.getText().toString().trim().isEmpty()){
-            autonHighFuelScoredInput.setError("Enter Fuel Count");
-            requestFocus(autonHighFuelScoredInput);
-            return false;
-        }else{
-            autonHighFuelScoredInputLayout.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    private boolean checkHighFuelMissed(){
-        if(autonHighFuelMissedInput.getText().toString().trim().isEmpty()){
-            autonHighFuelMissedInput.setError("Enter Fuel Count");
-            requestFocus(autonHighFuelMissedInput);
-            return false;
-        }else{
-            autonHighFuelMissedInputLayout.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    private boolean autonLowFuel(){
-        if(autonLowFuelInput.getText().toString().trim().isEmpty()){
-            autonLowFuelInput.setError("Enter Fuel Count");
-            requestFocus(autonLowFuelInput);
-            return false;
-        }else{
-            autonLowFuelInputLayout.setErrorEnabled(false);
-            return true;
-        }
+        return false;
     }
 
 
-    private void requestFocus(View view){
-        if(view.requestFocus()){
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+    public void onShowTeleop(View view) {
+
+        boolean allInputsPassed = false;
+
+        if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teamNumberInputLayout))) {
+            teamNumberInputLayout.setError(getText(R.string.teamNumberError));
+            ViewUtils.requestFocus(teamNumberInputLayout, this);
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(matchNumberInputLayout))) {
+            matchNumberInputLayout.setError(getText(R.string.matchNumberError));
+            ViewUtils.requestFocus(matchNumberInputLayout, this);
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(autonHighFuelScoredInputLayout))) {
+            autonHighFuelScoredInputLayout.setError(getText(R.string.autonHighFuelScoredError));
+            ViewUtils.requestFocus(autonHighFuelScoredInputLayout, this);
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(autonHighFuelMissedInputLayout))) {
+            autonHighFuelMissedInputLayout.setError(getText(R.string.autonHighFuelMissedError));
+            ViewUtils.requestFocus(autonHighFuelMissedInputLayout, this);
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(autonLowFuelInputLayout))) {
+            autonLowFuelInputLayout.setError(getText(R.string.autonLowFuelError));
+            ViewUtils.requestFocus(autonLowFuelInputLayout, this);
+        } else {
+            allInputsPassed = true;
         }
+
+        if (!allInputsPassed) {
+            return;
+        }
+
+        String autonGearSuccessString = String.valueOf(autonGearSuccessChkbx.isChecked());
+        String activatedHopperString = String.valueOf(activatedHopperChkbx.isChecked());
+
+        final RadioButton startingLocation_Radiobtn = (RadioButton) findViewById(startingLocationRadiobtnGrp.getCheckedRadioButtonId());
+        final RadioButton baseline_Radiobtn = (RadioButton) findViewById(baseLineRadiobtnGrp.getCheckedRadioButtonId());
+        final RadioButton autonGear_Radiobtn = (RadioButton) findViewById(autonGearRadiobtnGrp.getCheckedRadioButtonId());
+
+        autonDataStringList.add(getTextInputLayoutString(teamNumberInputLayout));
+        autonDataStringList.add(getTextInputLayoutString(matchNumberInputLayout));
+        autonDataStringList.add(startingLocation_Radiobtn.getText());
+        autonDataStringList.add(baseline_Radiobtn.getText());
+        autonDataStringList.add(autonGear_Radiobtn.getText());
+        autonDataStringList.add(getTextInputLayoutString(autonHighFuelScoredInputLayout));
+        autonDataStringList.add(getTextInputLayoutString(autonHighFuelMissedInputLayout));
+        autonDataStringList.add(getTextInputLayoutString(autonLowFuelInputLayout));
+        autonDataStringList.add(autonGearSuccessString);
+        autonDataStringList.add(activatedHopperString);
+
+
+
+        final Intent intent = new Intent(this, TeleopActivity.class);
+        intent.putExtra(AUTON_STRING_EXTRA, FormatStringUtils.addDelimiter(autonDataStringList, ","));
+        startActivity(intent);
+
+    }
+
+    private String getTextInputLayoutString(@NonNull TextInputLayout textInputLayout) {
+        final EditText editText = textInputLayout.getEditText();
+        return editText != null && editText.getText() != null ? editText.getText().toString() : "";
     }
 
 }

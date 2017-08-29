@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Scouting System</string>
+    <string name="app_name">2017 Kettering</string>
 
     <!--Auton Strings-->
     <string name="teamNumberHeading">Team Number</string>
@@ -23,6 +23,15 @@
     <string name="activatedHopper">Activated Hopper</string>
     <string name="saveButton">Save</string>
 
+
+    <!--Auton Error Strings-->
+
+    <string name="teamNumberError">Enter in Team Number</string>
+    <string name="matchNumberError">Enter in Match Number</string>
+    <string name="autonHighFuelScoredError">Enter Fuel count</string>
+    <string name="autonHighFuelMissedError">Enter Fuel count</string>
+    <string name="autonLowFuelError">Enter Fuel count</string>
+
     <!--Teleop Strings-->
     <string name="teleopGearPlacedHeading">Gears Placed</string>
     <string name="teleopGearDropHeading">Gears Dropped</string>
@@ -40,7 +49,7 @@
     <string name="noFuelRetrieval">None</string>
     <string name="gearRetrievalHeading">Gear Retrieval Location</string>
     <string name="floorGearRetrieval">Floor</string>
-    <string name="hopperGearRetrieval">Hopper</string>
+    <string name="chuteGearRetrieval">Chute</string>
     <string name="noGearRetrieval">None</string>
     <string name="climbingHeading">Climb</string>
     <string name="successClimb">Success</string>
@@ -54,4 +63,15 @@
     <string name="noDefense">NA</string>
     <string name="fouls">Fouls</string>
     <string name="nextButton">Move To Teleop</string>
+
+
+    <!--Teleop Error Strings-->
+    <string name="teleopGearPlacedError">Enter Gears Placed</string>
+    <string name="teleopGearDroppedError">Enter Gear Dropped</string>
+    <string name="teleopHighFuelScoredError">Enter High Fuel Scored</string>
+    <string name="teleopHighFuelMissedError">Enter High Fuel Missed</string>
+    <string name="teleopLowFuelError">Enter Low Fuel Scored</string>
+    <string name="climbTimeError">Enter Climb Time</string>
+
+
 </resources>
