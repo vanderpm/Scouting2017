@@ -159,19 +159,19 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         boolean allInputsPassed = false;
 
         if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teamNumberInputLayout))) {
-            teamNumberInputLayout.setError("Enter in Team Number");
+            teamNumberInputLayout.setError(getText(R.string.teamNumberError));
             ViewUtils.requestFocus(teamNumberInputLayout, this);
         } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(matchNumberInputLayout))) {
-            matchNumberInputLayout.setError("Enter in Match Number");
+            matchNumberInputLayout.setError(getText(R.string.matchNumberError));
             ViewUtils.requestFocus(matchNumberInputLayout, this);
         } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(autonHighFuelScoredInputLayout))) {
-            autonHighFuelScoredInputLayout.setError("Enter Fuel count");
+            autonHighFuelScoredInputLayout.setError(getText(R.string.autonHighFuelScoredError));
             ViewUtils.requestFocus(autonHighFuelScoredInputLayout, this);
         } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(autonHighFuelMissedInputLayout))) {
-            autonHighFuelMissedInputLayout.setError("Enter Fuel count");
+            autonHighFuelMissedInputLayout.setError(getText(R.string.autonHighFuelMissedError));
             ViewUtils.requestFocus(autonHighFuelMissedInputLayout, this);
         } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(autonLowFuelInputLayout))) {
-            autonLowFuelInputLayout.setError("Enter Fuel count");
+            autonLowFuelInputLayout.setError(getText(R.string.autonLowFuelError));
             ViewUtils.requestFocus(autonLowFuelInputLayout, this);
         } else {
             allInputsPassed = true;

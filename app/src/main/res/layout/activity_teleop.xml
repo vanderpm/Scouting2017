@@ -203,10 +203,10 @@
                 android:text="@string/floorGearRetrieval" />
 
             <RadioButton
-                android:id="@+id/hopperGearRetrieval_btn"
+                android:id="@+id/chuteGearRetrieval_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hopperGearRetrieval" />
+                android:text="@string/chuteGearRetrieval" />
 
             <RadioButton
                 android:id="@+id/noGearRetrieval_btn"

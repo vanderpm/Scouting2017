@@ -39,10 +39,10 @@ import utils.FormatStringUtils;
 import utils.StringUtils;
 import utils.ViewUtils;
 
+import static com.example.vande.scouting2017.AutonActivity.AUTON_STRING_EXTRA;
+
 
 public class TeleopActivity extends AppCompatActivity implements View.OnKeyListener {
-
-    public String heading, auton, teleop, message;
 
     @BindView(R.id.teleopGearPlaced_input_layout)
     public TextInputLayout  teleopGearPlacedInputLayout;
@@ -101,8 +101,10 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
     @BindView(R.id.fouls_chkbx)
     public CheckBox foulsChbx;
 
-    private ArrayList<CharSequence> headingDataStringList;
+    public String auton;
+
     private ArrayList<CharSequence> teleopDataStringList;
+//    private ArrayList<CharSequence> headingDataStringList;
 
 
     @Override
@@ -113,9 +115,8 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         ButterKnife.bind(this);
 
         Bundle bundle = getIntent().getExtras();
-        auton = bundle.getString("auton_extra");
+        auton = bundle.getString(AUTON_STRING_EXTRA);
 
-        headingDataStringList = new ArrayList<>();
         teleopDataStringList = new ArrayList<>();
 
     }
@@ -124,8 +125,6 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
     @Override
     protected void onResume(){
         super.onResume();
-
-        teleopDataStringList.clear();
 
         teleopGearPlacedInput.setOnKeyListener(this);
         teleopGearDroppedInput.setOnKeyListener(this);
@@ -184,35 +183,36 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
     }
 
     public void saveData(View view) throws IOException {
-        String state;
-        state = Environment.getExternalStorageState();
+        String state = Environment.getExternalStorageState();
         boolean allInputsPassed = false;
 
 
         if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopGearPlacedInputLayout))) {
-            teleopGearPlacedInputLayout.setError("Enter Gears Placed");
+            teleopGearPlacedInputLayout.setError(getText(R.string.teleopGearPlacedError));
             ViewUtils.requestFocus(teleopGearPlacedInputLayout, this);
         }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopGearDroppedInputLayout))){
-            teleopGearDroppedInputLayout.setError("Enter Gear Dropped");
+            teleopGearDroppedInputLayout.setError(getText(R.string.teleopGearDroppedError));
             ViewUtils.requestFocus(teleopGearDroppedInputLayout, this);
         }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopHighFuelScoredInputLayout))){
-            teleopHighFuelScoredInputLayout.setError("Enter High Fuel Scored");
+            teleopHighFuelScoredInputLayout.setError(getText(R.string.teleopHighFuelScoredError));
             ViewUtils.requestFocus(teleopHighFuelScoredInputLayout, this);
         }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopHighFuelMissedInputLayout))){
-            teleopHighFuelMissedInputLayout.setError("Enter High Fuel Missed");
+            teleopHighFuelMissedInputLayout.setError(getText(R.string.teleopHighFuelMissedError));
             ViewUtils.requestFocus(teleopHighFuelMissedInputLayout, this);
         }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopLowFuelInputLayout))) {
-            teleopLowFuelInputLayout.setError("Enter Low Fuel Scored");
+            teleopLowFuelInputLayout.setError(getText(R.string.teleopLowFuelError));
             ViewUtils.requestFocus(teleopLowFuelInputLayout, this);
         }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(climbTimeInputLayout))) {
-            climbTimeInputLayout.setError("Enter Climb Time");
+            climbTimeInputLayout.setError(getText(R.string.climbTimeError));
             ViewUtils.requestFocus(climbTimeInputLayout, this);
         }else {
             allInputsPassed = true;
         }
+        if (!allInputsPassed) {
+            return;
+        }
 
-
-
+        
         final RadioButton gearPlacement_Radiobtn = (RadioButton) findViewById(gearPlacementRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton fuelRetreival_Radiobtn = (RadioButton) findViewById(fuelRetrievalRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton gearRetreival_Radiobtn = (RadioButton) findViewById(gearRetrievalRadiobtnGrp.getCheckedRadioButtonId());
@@ -226,35 +226,35 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             //create csv file
             File file = new File(Dir,"MyMessage.csv");
 
-//            if first time file is opened create row header
-            if(!file.exists()){
-                headingDataStringList.add("teamNumber");
-                headingDataStringList.add("matchNumber");
-                headingDataStringList.add("startingLocation" );
-                headingDataStringList.add("baseline" );
-                headingDataStringList.add("autonGear" );
-                headingDataStringList.add("autonGearSuccess");
-                headingDataStringList.add("autonHighFuelScored" );
-                headingDataStringList.add("autonHighFuelMissed" );
-                headingDataStringList.add("autonLowFuel");
-                headingDataStringList.add("activatedHopper");
-                headingDataStringList.add("teleopGearPlaced");
-                headingDataStringList.add("gearPlacement");
-                headingDataStringList.add("teleopGearDropped");
-                headingDataStringList.add("teleopHighFuelScored");
-                headingDataStringList.add("teleopHighFuelMissed");
-                headingDataStringList.add("teleopLowFuel");
-                headingDataStringList.add("fuelRetrieval");
-                headingDataStringList.add("gearRetrieval");
-                headingDataStringList.add("climbing");
-                headingDataStringList.add("climbTime");
-                headingDataStringList.add("defense");
-            }
-            else{
-                //empty header as the are already created
-                headingDataStringList.add("");
-            }
 
+//            if first time file is opened create row header
+//            if(!file.exists()){
+//                headingDataStringList.add("teamNumber");
+//                headingDataStringList.add("matchNumber");
+//                headingDataStringList.add("startingLocation" );
+//                headingDataStringList.add("baseline" );
+//                headingDataStringList.add("autonGear" );
+//                headingDataStringList.add("autonGearSuccess");
+//                headingDataStringList.add("autonHighFuelScored" );
+//                headingDataStringList.add("autonHighFuelMissed" );
+//                headingDataStringList.add("autonLowFuel");
+//                headingDataStringList.add("activatedHopper");
+//                headingDataStringList.add("teleopGearPlaced");
+//                headingDataStringList.add("gearPlacement");
+//                headingDataStringList.add("teleopGearDropped");
+//                headingDataStringList.add("teleopHighFuelScored");
+//                headingDataStringList.add("teleopHighFuelMissed");
+//                headingDataStringList.add("teleopLowFuel");
+//                headingDataStringList.add("fuelRetrieval");
+//                headingDataStringList.add("gearRetrieval");
+//                headingDataStringList.add("climbing");
+//                headingDataStringList.add("climbTime");
+//                headingDataStringList.add("defense");
+//            }
+//            else{
+//                //empty header as the are already created
+//                headingDataStringList.add("");
+//            }
 
             teleopDataStringList.add(getTextInputLayoutString(teleopGearPlacedInputLayout));
             teleopDataStringList.add(gearPlacement_Radiobtn.getText());
@@ -268,9 +268,8 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             teleopDataStringList.add(getTextInputLayoutString(climbTimeInputLayout));
             teleopDataStringList.add(defense_Radiobtn.getText());
 
-            String message = FormatStringUtils.addDelimiter(headingDataStringList, ",") + "\n"+
-                    auton +","+ FormatStringUtils.addDelimiter(teleopDataStringList, ",");
-
+            String message = auton +","+ FormatStringUtils.addDelimiter(teleopDataStringList, ",");
+//            String message = FormatStringUtils.addDelimiter(teleopDataStringList, ",") + auton +","+ FormatStringUtils.addDelimiter(teleopDataStringList, ",");
 
 //                message = heading + auton +","+ teleop + "\n";
                 //Output data to file
@@ -293,6 +292,7 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
 
             //Clear data from form fields
             clearData(view);
+            finish();
         }
 
 

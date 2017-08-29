@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Scouting System</string>
+    <string name="app_name">2017 Kettering</string>
 
     <!--Auton Strings-->
     <string name="teamNumberHeading">Team Number</string>
@@ -49,7 +49,7 @@
     <string name="noFuelRetrieval">None</string>
     <string name="gearRetrievalHeading">Gear Retrieval Location</string>
     <string name="floorGearRetrieval">Floor</string>
-    <string name="hopperGearRetrieval">Hopper</string>
+    <string name="chuteGearRetrieval">Chute</string>
     <string name="noGearRetrieval">None</string>
     <string name="climbingHeading">Climb</string>
     <string name="successClimb">Success</string>
@@ -66,7 +66,12 @@
 
 
     <!--Teleop Error Strings-->
-
+    <string name="teleopGearPlacedError">Enter Gears Placed</string>
+    <string name="teleopGearDroppedError">Enter Gear Dropped</string>
+    <string name="teleopHighFuelScoredError">Enter High Fuel Scored</string>
+    <string name="teleopHighFuelMissedError">Enter High Fuel Missed</string>
+    <string name="teleopLowFuelError">Enter Low Fuel Scored</string>
+    <string name="climbTimeError">Enter Climb Time</string>
 
 
 </resources>
