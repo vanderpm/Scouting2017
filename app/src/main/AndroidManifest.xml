@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TeleopActivity"></activity>
+        <activity android:name=".PitActivity"></activity>
 
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

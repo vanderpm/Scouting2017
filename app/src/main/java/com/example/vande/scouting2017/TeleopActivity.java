@@ -7,6 +7,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -119,6 +121,26 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
 
         teleopDataStringList = new ArrayList<>();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.match_scouting:
+                startActivity(new Intent(this, AutonActivity.class));
+                return true;
+            case R.id.pit_scouting:
+                startActivity(new Intent(this, PitActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

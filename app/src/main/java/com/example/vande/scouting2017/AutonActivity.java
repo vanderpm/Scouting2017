@@ -7,6 +7,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -89,6 +91,27 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         ButterKnife.bind(this);
         autonDataStringList = new ArrayList<>();
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.match_scouting:
+                startActivity(new Intent(this, AutonActivity.class));
+                return true;
+            case R.id.pit_scouting:
+                startActivity(new Intent(this, PitActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

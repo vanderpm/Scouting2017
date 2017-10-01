@@ -74,4 +74,15 @@
     <string name="climbTimeError">Enter Climb Time</string>
 
 
+    <!--Menu Strings-->
+    <string name="matchScouting">Match</string>
+    <string name="pitScouting">Pit</string>
+
+    <!--Pit Scouting Strings-->
+    <string name="pitTeamNumberHeading">Team Number</string>
+    <string name="pitFuelCapacityHeading">Fuel Capacity</string>
+    <string name="pitNumberOfGearsHeading">Number of gears per match</string>
+    <string name="pitAutonPlanHeading">What do you do in auton?</string>
+    <string name="pitClimbTimeHeading">Climb time</string>
+
 </resources>
