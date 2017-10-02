@@ -85,4 +85,14 @@
     <string name="pitAutonPlanHeading">What do you do in auton?</string>
     <string name="pitClimbTimeHeading">Climb time</string>
 
+
+
+    <!--Pit Error Strings-->
+    <string name="pitTeamNumberError">Enter Team Number</string>
+    <string name="pitFuelCapacityError">Enter Fuel Capacity</string>
+    <string name="pitNumberOfGearsError">Enter number of gears</string>
+    <string name="pitAutonPlanError">Enter Auton Plan</string>
+    <string name="pitClimbTimeError">Enter Climb Time</string>
+
+
 </resources>
