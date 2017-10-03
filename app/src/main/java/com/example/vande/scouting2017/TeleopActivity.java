@@ -246,37 +246,8 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             File Root = Environment.getExternalStorageDirectory();
             File Dir = new File(Root.getAbsoluteFile()+"/Documents");
             //create csv file
-            File file = new File(Dir,"MyMessage.csv");
+            File file = new File(Dir,"Match.csv");
 
-
-//            if first time file is opened create row header
-//            if(!file.exists()){
-//                headingDataStringList.add("teamNumber");
-//                headingDataStringList.add("matchNumber");
-//                headingDataStringList.add("startingLocation" );
-//                headingDataStringList.add("baseline" );
-//                headingDataStringList.add("autonGear" );
-//                headingDataStringList.add("autonGearSuccess");
-//                headingDataStringList.add("autonHighFuelScored" );
-//                headingDataStringList.add("autonHighFuelMissed" );
-//                headingDataStringList.add("autonLowFuel");
-//                headingDataStringList.add("activatedHopper");
-//                headingDataStringList.add("teleopGearPlaced");
-//                headingDataStringList.add("gearPlacement");
-//                headingDataStringList.add("teleopGearDropped");
-//                headingDataStringList.add("teleopHighFuelScored");
-//                headingDataStringList.add("teleopHighFuelMissed");
-//                headingDataStringList.add("teleopLowFuel");
-//                headingDataStringList.add("fuelRetrieval");
-//                headingDataStringList.add("gearRetrieval");
-//                headingDataStringList.add("climbing");
-//                headingDataStringList.add("climbTime");
-//                headingDataStringList.add("defense");
-//            }
-//            else{
-//                //empty header as the are already created
-//                headingDataStringList.add("");
-//            }
 
             teleopDataStringList.add(getTextInputLayoutString(teleopGearPlacedInputLayout));
             teleopDataStringList.add(gearPlacement_Radiobtn.getText());
@@ -308,10 +279,10 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             Toast.makeText(getApplicationContext(),"message Saved", Toast.LENGTH_LONG).show();
 
 
-                Intent intent = new Intent(this, AutonActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(this, AutonActivity.class);
+//                startActivity(intent);
 
-
+            Global.teleopBool = true;
             //Clear data from form fields
             clearData(view);
             finish();

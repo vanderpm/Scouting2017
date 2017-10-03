@@ -74,7 +74,6 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     @BindView(R.id.activatedHopper_chkbx)
     public CheckBox activatedHopperChkbx;
 
-
     @BindView(R.id.next_button)
     public Button nextButton;
 
@@ -100,7 +99,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         return true;
     }
 
-
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.match_scouting:
@@ -119,6 +118,19 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         super.onResume();
 
         autonDataStringList.clear();
+        if(Global.teleopBool){
+            teamNumberInput.setText("");
+            matchNumberInput.setText("");
+            startingLocationRadiobtnGrp.check(R.id.failBaseline_Radiobtn);
+            autonGearRadiobtnGrp.check(R.id.noAutonGear_Radiobtn);
+            autonGearSuccessChkbx.setChecked(false);
+            autonHighFuelScoredInput.setText("");
+            autonHighFuelMissedInput.setText("");
+            autonLowFuelInput.setText("");
+            activatedHopperChkbx.setChecked(false);
+            teamNumberInput.requestFocus();
+        }
+
 
         teamNumberInput.setOnKeyListener(this);
         matchNumberInput.setOnKeyListener(this);
@@ -178,7 +190,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
 
 
     public void onShowTeleop(View view) {
-
+        Global.teleopBool = false;
         boolean allInputsPassed = false;
 
         if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teamNumberInputLayout))) {
@@ -222,13 +234,27 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         autonDataStringList.add(autonGearSuccessString);
         autonDataStringList.add(activatedHopperString);
 
-
-
         final Intent intent = new Intent(this, TeleopActivity.class);
         intent.putExtra(AUTON_STRING_EXTRA, FormatStringUtils.addDelimiter(autonDataStringList, ","));
-        startActivity(intent);
 
+        startActivity(intent);
     }
+
+
+    public void clearData(View view){
+        teamNumberInput.setText("");
+        matchNumberInput.setText("");
+        startingLocationRadiobtnGrp.check(R.id.failBaseline_Radiobtn);
+        autonGearRadiobtnGrp.check(R.id.noAutonGear_Radiobtn);
+        autonGearSuccessChkbx.setChecked(false);
+        autonHighFuelScoredInput.setText("");
+        autonHighFuelMissedInput.setText("");
+        autonLowFuelInput.setText("");
+        activatedHopperChkbx.setChecked(false);
+    }
+
+
+
 
     private String getTextInputLayoutString(@NonNull TextInputLayout textInputLayout) {
         final EditText editText = textInputLayout.getEditText();
