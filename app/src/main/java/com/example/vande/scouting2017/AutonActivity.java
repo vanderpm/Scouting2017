@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,6 @@ import butterknife.ButterKnife;
 import utils.FormatStringUtils;
 import utils.StringUtils;
 import utils.ViewUtils;
-
 
 public class AutonActivity extends AppCompatActivity implements View.OnKeyListener {
 
@@ -78,26 +78,23 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     public Button nextButton;
 
     private ArrayList<CharSequence> autonDataStringList;
-
+    public static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_auton);
-
-
         ButterKnife.bind(this);
         autonDataStringList = new ArrayList<>();
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -118,19 +115,6 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         super.onResume();
 
         autonDataStringList.clear();
-        if(Global.teleopBool){
-            teamNumberInput.setText("");
-            matchNumberInput.setText("");
-            startingLocationRadiobtnGrp.check(R.id.failBaseline_Radiobtn);
-            autonGearRadiobtnGrp.check(R.id.noAutonGear_Radiobtn);
-            autonGearSuccessChkbx.setChecked(false);
-            autonHighFuelScoredInput.setText("");
-            autonHighFuelMissedInput.setText("");
-            autonLowFuelInput.setText("");
-            activatedHopperChkbx.setChecked(false);
-            teamNumberInput.requestFocus();
-        }
-
 
         teamNumberInput.setOnKeyListener(this);
         matchNumberInput.setOnKeyListener(this);
@@ -138,7 +122,6 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         autonHighFuelMissedInput.setOnKeyListener(this);
         autonLowFuelInput.setOnKeyListener(this);
     }
-
 
     @Override
     protected void onPause(){
@@ -151,10 +134,8 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         autonLowFuelInput.setOnKeyListener(null);
     }
 
-
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event){
-
         if(keyCode != KeyEvent.KEYCODE_SPACE && keyCode != KeyEvent.KEYCODE_TAB){
             TextInputEditText inputEditText = (TextInputEditText) v;
 
@@ -187,10 +168,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         return false;
     }
 
-
-
     public void onShowTeleop(View view) {
-        Global.teleopBool = false;
         boolean allInputsPassed = false;
 
         if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teamNumberInputLayout))) {
@@ -237,11 +215,25 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         final Intent intent = new Intent(this, TeleopActivity.class);
         intent.putExtra(AUTON_STRING_EXTRA, FormatStringUtils.addDelimiter(autonDataStringList, ","));
 
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
 
-    public void clearData(View view){
+    @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent data){
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+                String requiredValue = data.getStringExtra("Key");
+                clearData();
+            }
+        }catch (Exception ex){
+            Toast.makeText(this, ex.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void clearData(){
         teamNumberInput.setText("");
         matchNumberInput.setText("");
         startingLocationRadiobtnGrp.check(R.id.failBaseline_Radiobtn);
@@ -251,10 +243,8 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         autonHighFuelMissedInput.setText("");
         autonLowFuelInput.setText("");
         activatedHopperChkbx.setChecked(false);
+        teamNumberInput.requestFocus();
     }
-
-
-
 
     private String getTextInputLayoutString(@NonNull TextInputLayout textInputLayout) {
         final EditText editText = textInputLayout.getEditText();

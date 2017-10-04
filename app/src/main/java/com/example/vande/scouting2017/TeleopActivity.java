@@ -1,9 +1,12 @@
 package com.example.vande.scouting2017;
 
+import android.content.DialogInterface;
 import android.os.Environment;
 
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -41,8 +44,9 @@ import utils.FormatStringUtils;
 import utils.StringUtils;
 import utils.ViewUtils;
 
+import static android.R.attr.value;
 import static com.example.vande.scouting2017.AutonActivity.AUTON_STRING_EXTRA;
-
+import static java.security.AccessController.getContext;
 
 public class TeleopActivity extends AppCompatActivity implements View.OnKeyListener {
 
@@ -106,8 +110,6 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
     public String auton;
 
     private ArrayList<CharSequence> teleopDataStringList;
-//    private ArrayList<CharSequence> headingDataStringList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,8 +122,8 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         auton = bundle.getString(AUTON_STRING_EXTRA);
 
         teleopDataStringList = new ArrayList<>();
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -143,7 +145,6 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         }
     }
 
-
     @Override
     protected void onResume(){
         super.onResume();
@@ -156,7 +157,6 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
 
     }
 
-
     @Override
     protected void onPause(){
         super.onPause();
@@ -168,10 +168,8 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         climbTimeInput.setOnKeyListener(null);
     }
 
-
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event){
-
         if(keyCode != KeyEvent.KEYCODE_SPACE && keyCode != KeyEvent.KEYCODE_TAB){
             TextInputEditText inputEditText = (TextInputEditText) v;
 
@@ -208,6 +206,17 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         String state = Environment.getExternalStorageState();
         boolean allInputsPassed = false;
 
+//        TODO:Add Alertbox upon submit
+//        AlertDialog alertDialog = new AlertDialog.Builder(TeleopActivity.this).create();
+//        alertDialog.setTitle("Alert");
+//        alertDialog.setMessage("Alert message to be shown");
+//        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//        alertDialog.show();
 
         if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopGearPlacedInputLayout))) {
             teleopGearPlacedInputLayout.setError(getText(R.string.teleopGearPlacedError));
@@ -234,20 +243,18 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             return;
         }
 
-        
         final RadioButton gearPlacement_Radiobtn = (RadioButton) findViewById(gearPlacementRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton fuelRetreival_Radiobtn = (RadioButton) findViewById(fuelRetrievalRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton gearRetreival_Radiobtn = (RadioButton) findViewById(gearRetrievalRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton climbing_Radiobtn = (RadioButton) findViewById(climbingRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton defense_Radiobtn = (RadioButton) findViewById(defenseRadiobtnGrp.getCheckedRadioButtonId());
 
-
         if(Environment.MEDIA_MOUNTED.equals(state)){
             File Root = Environment.getExternalStorageDirectory();
             File Dir = new File(Root.getAbsoluteFile()+"/Documents");
             //create csv file
-            File file = new File(Dir,"Match.csv");
-
+//            TODO:Find better way to have deviceID
+            File file = new File(Dir,"Match"+ Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)+".csv");
 
             teleopDataStringList.add(getTextInputLayoutString(teleopGearPlacedInputLayout));
             teleopDataStringList.add(gearPlacement_Radiobtn.getText());
@@ -278,20 +285,15 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             }
             Toast.makeText(getApplicationContext(),"message Saved", Toast.LENGTH_LONG).show();
 
+            Intent intent = getIntent();
+            intent.putExtra("Key", value);
+            setResult(RESULT_OK, intent);
 
-//                Intent intent = new Intent(this, AutonActivity.class);
-//                startActivity(intent);
-
-            Global.teleopBool = true;
-            //Clear data from form fields
             clearData(view);
             finish();
         }
 
-
-
     public void clearData(View view){
-
         teleopGearPlacedInput.setText("");
         gearPlacementRadiobtnGrp.check(R.id.passiveGearPlacement_btn);
         teleopGearDroppedInput.setText("");
@@ -305,10 +307,11 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         defenseRadiobtnGrp.check(R.id.noDefense_btn);
     }
 
-
     private String getTextInputLayoutString(@NonNull TextInputLayout textInputLayout) {
         final EditText editText = textInputLayout.getEditText();
         return editText != null && editText.getText() != null ? editText.getText().toString() : "";
     }
+
+//TODO: Add Quantity Steppers for number entry
 
 }
