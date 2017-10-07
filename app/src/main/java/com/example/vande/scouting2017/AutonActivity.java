@@ -80,6 +80,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     private ArrayList<CharSequence> autonDataStringList;
     public static final int REQUEST_CODE = 1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,28 +91,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.match_scouting:
-                startActivity(new Intent(this, AutonActivity.class));
-                return true;
-            case R.id.pit_scouting:
-                startActivity(new Intent(this, PitActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
 
         autonDataStringList.clear();
@@ -124,7 +104,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
 
         teamNumberInput.setOnKeyListener(null);
@@ -135,13 +115,35 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     }
 
     @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event){
-        if(keyCode != KeyEvent.KEYCODE_SPACE && keyCode != KeyEvent.KEYCODE_TAB){
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.match_scouting:
+                startActivity(new Intent(this, AutonActivity.class));
+                return true;
+            case R.id.pit_scouting:
+                startActivity(new Intent(this, PitActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (keyCode != KeyEvent.KEYCODE_SPACE && keyCode != KeyEvent.KEYCODE_TAB) {
             TextInputEditText inputEditText = (TextInputEditText) v;
 
-            if (inputEditText != null){
+            if (inputEditText != null) {
 
-                switch (inputEditText.getId()){
+                switch (inputEditText.getId()) {
 
                     case R.id.teamNumber_input:
                         teamNumberInputLayout.setError(null);
@@ -220,20 +222,20 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
 
 
     @Override
-    protected void onActivityResult( int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
             super.onActivityResult(requestCode, resultCode, data);
 
-            if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+            if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
                 String requiredValue = data.getStringExtra("Key");
                 clearData();
             }
-        }catch (Exception ex){
-            Toast.makeText(this, ex.toString(),Toast.LENGTH_SHORT).show();
+        } catch (Exception ex) {
+            Toast.makeText(this, ex.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void clearData(){
+    public void clearData() {
         teamNumberInput.setText("");
         matchNumberInput.setText("");
         startingLocationRadiobtnGrp.check(R.id.failBaseline_Radiobtn);

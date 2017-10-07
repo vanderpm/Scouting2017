@@ -1,19 +1,16 @@
 package com.example.vande.scouting2017;
 
-import android.content.DialogInterface;
 import android.os.Environment;
 
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,20 +18,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.support.design.widget.TextInputLayout;
-
-
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 import java.io.File;
-
 import java.io.FileOutputStream;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -46,12 +33,12 @@ import utils.ViewUtils;
 
 import static android.R.attr.value;
 import static com.example.vande.scouting2017.AutonActivity.AUTON_STRING_EXTRA;
-import static java.security.AccessController.getContext;
+
 
 public class TeleopActivity extends AppCompatActivity implements View.OnKeyListener {
 
     @BindView(R.id.teleopGearPlaced_input_layout)
-    public TextInputLayout  teleopGearPlacedInputLayout;
+    public TextInputLayout teleopGearPlacedInputLayout;
 
     @BindView(R.id.teleopGearDropped_input_layout)
     public TextInputLayout teleopGearDroppedInputLayout;
@@ -126,14 +113,37 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    protected void onResume() {
+        super.onResume();
+
+        teleopGearPlacedInput.setOnKeyListener(this);
+        teleopGearDroppedInput.setOnKeyListener(this);
+        teleopHighFuelScoredInput.setOnKeyListener(this);
+        teleopHighFuelMissedInput.setOnKeyListener(this);
+        climbTimeInput.setOnKeyListener(this);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        teleopGearPlacedInput.setOnKeyListener(null);
+        teleopGearDroppedInput.setOnKeyListener(null);
+        teleopHighFuelScoredInput.setOnKeyListener(null);
+        teleopHighFuelMissedInput.setOnKeyListener(null);
+        climbTimeInput.setOnKeyListener(null);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.match_scouting:
                 startActivity(new Intent(this, AutonActivity.class));
                 return true;
@@ -146,36 +156,13 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
     }
 
     @Override
-    protected void onResume(){
-        super.onResume();
-
-        teleopGearPlacedInput.setOnKeyListener(this);
-        teleopGearDroppedInput.setOnKeyListener(this);
-        teleopHighFuelScoredInput.setOnKeyListener(this);
-        teleopHighFuelMissedInput.setOnKeyListener(this);
-        climbTimeInput.setOnKeyListener(this);
-
-    }
-
-    @Override
-    protected void onPause(){
-        super.onPause();
-
-        teleopGearPlacedInput.setOnKeyListener(null);
-        teleopGearDroppedInput.setOnKeyListener(null);
-        teleopHighFuelScoredInput.setOnKeyListener(null);
-        teleopHighFuelMissedInput.setOnKeyListener(null);
-        climbTimeInput.setOnKeyListener(null);
-    }
-
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event){
-        if(keyCode != KeyEvent.KEYCODE_SPACE && keyCode != KeyEvent.KEYCODE_TAB){
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (keyCode != KeyEvent.KEYCODE_SPACE && keyCode != KeyEvent.KEYCODE_TAB) {
             TextInputEditText inputEditText = (TextInputEditText) v;
 
-            if (inputEditText != null){
+            if (inputEditText != null) {
 
-                switch (inputEditText.getId()){
+                switch (inputEditText.getId()) {
 
                     case R.id.teleopGearPlaced_input:
                         teleopGearPlacedInputLayout.setError(null);
@@ -206,37 +193,25 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         String state = Environment.getExternalStorageState();
         boolean allInputsPassed = false;
 
-//        TODO:Add Alertbox upon submit
-//        AlertDialog alertDialog = new AlertDialog.Builder(TeleopActivity.this).create();
-//        alertDialog.setTitle("Alert");
-//        alertDialog.setMessage("Alert message to be shown");
-//        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//        alertDialog.show();
-
         if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopGearPlacedInputLayout))) {
             teleopGearPlacedInputLayout.setError(getText(R.string.teleopGearPlacedError));
             ViewUtils.requestFocus(teleopGearPlacedInputLayout, this);
-        }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopGearDroppedInputLayout))){
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopGearDroppedInputLayout))) {
             teleopGearDroppedInputLayout.setError(getText(R.string.teleopGearDroppedError));
             ViewUtils.requestFocus(teleopGearDroppedInputLayout, this);
-        }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopHighFuelScoredInputLayout))){
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopHighFuelScoredInputLayout))) {
             teleopHighFuelScoredInputLayout.setError(getText(R.string.teleopHighFuelScoredError));
             ViewUtils.requestFocus(teleopHighFuelScoredInputLayout, this);
-        }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopHighFuelMissedInputLayout))){
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopHighFuelMissedInputLayout))) {
             teleopHighFuelMissedInputLayout.setError(getText(R.string.teleopHighFuelMissedError));
             ViewUtils.requestFocus(teleopHighFuelMissedInputLayout, this);
-        }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopLowFuelInputLayout))) {
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(teleopLowFuelInputLayout))) {
             teleopLowFuelInputLayout.setError(getText(R.string.teleopLowFuelError));
             ViewUtils.requestFocus(teleopLowFuelInputLayout, this);
-        }else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(climbTimeInputLayout))) {
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(climbTimeInputLayout))) {
             climbTimeInputLayout.setError(getText(R.string.climbTimeError));
             ViewUtils.requestFocus(climbTimeInputLayout, this);
-        }else {
+        } else {
             allInputsPassed = true;
         }
         if (!allInputsPassed) {
@@ -249,12 +224,10 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         final RadioButton climbing_Radiobtn = (RadioButton) findViewById(climbingRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton defense_Radiobtn = (RadioButton) findViewById(defenseRadiobtnGrp.getCheckedRadioButtonId());
 
-        if(Environment.MEDIA_MOUNTED.equals(state)){
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
             File Root = Environment.getExternalStorageDirectory();
-            File Dir = new File(Root.getAbsoluteFile()+"/Documents");
-            //create csv file
-//            TODO:Find better way to have deviceID
-            File file = new File(Dir,"Match"+ Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)+".csv");
+            File Dir = new File(Root.getAbsoluteFile() + "/Documents");
+            File file = new File(Dir, "Match" + Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID) + ".csv");
 
             teleopDataStringList.add(getTextInputLayoutString(teleopGearPlacedInputLayout));
             teleopDataStringList.add(gearPlacement_Radiobtn.getText());
@@ -268,32 +241,29 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             teleopDataStringList.add(getTextInputLayoutString(climbTimeInputLayout));
             teleopDataStringList.add(defense_Radiobtn.getText());
 
-            String message = auton +","+ FormatStringUtils.addDelimiter(teleopDataStringList, ",");
-//            String message = FormatStringUtils.addDelimiter(teleopDataStringList, ",") + auton +","+ FormatStringUtils.addDelimiter(teleopDataStringList, ",");
+            String message = auton + "," + FormatStringUtils.addDelimiter(teleopDataStringList, ",");
 
-//                message = heading + auton +","+ teleop + "\n";
-                //Output data to file
-                try{
-                    FileOutputStream fileOutputStream= new FileOutputStream(file,true);
-                    fileOutputStream.write(message.getBytes());
-                    fileOutputStream.close();
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-            }else{
-                Toast.makeText(getApplicationContext(),"SD card not found", Toast.LENGTH_LONG).show();
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+                fileOutputStream.write(message.getBytes());
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            Toast.makeText(getApplicationContext(),"message Saved", Toast.LENGTH_LONG).show();
-
-            Intent intent = getIntent();
-            intent.putExtra("Key", value);
-            setResult(RESULT_OK, intent);
-
-            clearData(view);
-            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), "SD card not found", Toast.LENGTH_LONG).show();
         }
+        Toast.makeText(getApplicationContext(), "message Saved", Toast.LENGTH_LONG).show();
 
-    public void clearData(View view){
+        Intent intent = getIntent();
+        intent.putExtra("Key", value);
+        setResult(RESULT_OK, intent);
+
+        clearData(view);
+        finish();
+    }
+
+    public void clearData(View view) {
         teleopGearPlacedInput.setText("");
         gearPlacementRadiobtnGrp.check(R.id.passiveGearPlacement_btn);
         teleopGearDroppedInput.setText("");
@@ -311,7 +281,4 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         final EditText editText = textInputLayout.getEditText();
         return editText != null && editText.getText() != null ? editText.getText().toString() : "";
     }
-
-//TODO: Add Quantity Steppers for number entry
-
 }
