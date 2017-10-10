@@ -1,270 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ScrollView01"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:scrollbars="vertical">
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:orientation="vertical"
-        android:layout_height="fill_parent">
 
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <LinearLayout
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-            <TextView
-                android:id="@+id/TeamNumber_textView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Team Number"/>
-
-            <EditText
-                android:id="@+id/TeamNumber_input"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"/>
-
-            <TextView
-                android:id="@+id/MatchNumber_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Match Number"/>
-
-            <EditText
-                android:id="@+id/MatchNumber_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/StartingLocation_TextView"
-                android:layout_width="wrap_content"
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/teamNumber_input_layout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Starting Location"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                android:layout_marginEnd="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/teamNumberHeading"
+                app:errorEnabled="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/teamNumber_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/matchNumber_input_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginStart="18dp"
+                android:hint="@string/matchNumberHeading"
+                app:errorEnabled="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/teamNumber_input_layout">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/matchNumber_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/startingLocation_TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/startingLocationHeading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/matchNumber_input_layout"
+                tools:layout_editor_absoluteX="0dp" />
+
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
+                android:id="@+id/startingLocation_RadiobtnGrp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/startingLocation_TextView">
+
                 <RadioButton
-                    android:id="@+id/FeederStartingLocation_Radiobtn"
+                    android:id="@+id/feederStartingLocation_Radiobtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Feeder"
-                    android:onClick="onStartingLocationRadioButtonClick"/>
+                    android:checked="true"
+                    android:text="@string/feederStarting" />
+
                 <RadioButton
-                    android:id="@+id/MiddleStartingLocation_Radiobtn"
+                    android:id="@+id/middleStartingLocation_Radiobtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Middle"
-                    android:onClick="onStartingLocationRadioButtonClick"/>
+                    android:text="@string/middleStarting" />
+
                 <RadioButton
-                    android:id="@+id/BoilerStartingLocation_Radiobtn"
+                    android:id="@+id/boilerStartingLocation_Radiobtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Boiler"
-                    android:onClick="onStartingLocationRadioButtonClick"/>
+                    android:text="@string/boilerStarting" />
             </RadioGroup>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/BaseLine_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Baseline"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/SuccessBaseline_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Success"
-                    android:onClick="onBaselineRadioButtonClicked"/>
-                <RadioButton
-                    android:id="@+id/FailBaseline_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fail"
-                    android:onClick="onBaselineRadioButtonClicked"/>
-            </RadioGroup>
-        </LinearLayout>
-        <TextView
-            android:id="@+id/AutonGear_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Auton Gear"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/FeederAutonGear_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Feeder"
-                    android:onClick="onAutonGearRadioButtonClicked"/>
-                <RadioButton
-                    android:id="@+id/MiddleAutonGear_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Middle"
-                    android:onClick="onAutonGearRadioButtonClicked"/>
-                <RadioButton
-                    android:id="@+id/BoilerAutonGear_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Boiler"
-                    android:onClick="onAutonGearRadioButtonClicked"/>
-                <RadioButton
-                    android:id="@+id/NoAutonGear_Radiobtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="None"
-                    android:onClick="onAutonGearRadioButtonClicked"/>
-            </RadioGroup>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-            <TextView
-                android:id="@+id/AutonHighFuel_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="High Auton Fuel"/>
-            <EditText
-                android:id="@+id/AutonHighFuel_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"/>
 
             <TextView
-                android:id="@+id/AutonLowFuel_TextView"
+                android:id="@+id/baseLine_TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/baselineCrossHeading"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/startingLocation_RadiobtnGrp" />
+
+            <RadioGroup
+                android:id="@+id/baseLine_RadiobtnGrp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/baseLine_TextView">
+
+                <RadioButton
+                    android:id="@+id/successBaseline_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/successBaseline" />
+
+                <RadioButton
+                    android:id="@+id/failBaseline_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/failBaseline" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/autonGear_TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/autonGearHeading"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/baseLine_RadiobtnGrp" />
+
+            <RadioGroup
+                android:id="@+id/autonGear_RadiobtnGrp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autonGear_TextView">
+
+                <RadioButton
+                    android:id="@+id/feederAutonGear_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/feederAutonGear" />
+
+                <RadioButton
+                    android:id="@+id/middleAutonGear_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/middleAutonGear" />
+
+                <RadioButton
+                    android:id="@+id/boilerAutonGear_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/boilerAutonGear" />
+
+                <RadioButton
+                    android:id="@+id/noAutonGear_Radiobtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/noAutonGear" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/autonGearSuccess_TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/autonGearSuccessHeading"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autonGear_RadiobtnGrp" />
+
+            <CheckBox
+                android:id="@+id/autonGearSuccess_chkbx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Low Auton Fuel"/>
-            <EditText
-                android:id="@+id/AutonLowFuel_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"/>
-        </LinearLayout>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autonGearSuccess_TextView" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/autonHighFuelScored_input_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginStart="18dp"
+                android:hint="@string/highAutonFuelScored"
+                app:errorEnabled="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autonGearSuccess_chkbx">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/autonHighFuelScored_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/autonHighFuelMissed_input_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginStart="18dp"
+                android:hint="@string/highAutonFuelMissed"
+                app:errorEnabled="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autonHighFuelScored_input_layout">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/autonHighFuelMissed_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/autonLowFuel_input_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginStart="18dp"
+                app:errorEnabled="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autonHighFuelMissed_input_layout">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/autonLowFuel_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lowAutonFuel"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
             <TextView
                 android:id="@+id/ActivatedHopper_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Activated Hopper"/>
+                android:text="@string/activatedHopper"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autonLowFuel_input_layout" />
+
             <CheckBox
-                android:id="@+id/ActivatedHopper_chkbx"
+                android:id="@+id/activatedHopper_chkbx"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/Save_btn"
                 android:layout_height="wrap_content"
-                android:text="@string/feedbackbutton"
-                android:onClick="sendFeedback"
-                android:layout_width="fill_parent">
-            </Button>
-        </LinearLayout>
+                android:layout_marginBottom="48dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ActivatedHopper_TextView" />
 
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="onShowTeleop"
+                android:text="@string/nextButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activatedHopper_chkbx"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="81dp" />
 
-    </LinearLayout>
-</ScrollView>
+        </android.support.constraint.ConstraintLayout>
 
+    </ScrollView>
 
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<ScrollView-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:id="@+id/ScrollView01"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:scrollbars="vertical">-->
-    <!--<LinearLayout-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_height="fill_parent">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/TextViewTitle"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/feedbacktitle"-->
-            <!--android:textSize="10pt">-->
-        <!--</TextView>-->
-        <!--<EditText-->
-            <!--android:id="@+id/EditTextName"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/feedbackname"-->
-            <!--android:inputType="textPersonName"-->
-            <!--android:layout_width="fill_parent">-->
-        <!--</EditText>-->
-        <!--<EditText-->
-            <!--android:id="@+id/EditTextEmail"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/feedbackemail"-->
-            <!--android:inputType="textEmailAddress"-->
-            <!--android:layout_width="fill_parent">-->
-        <!--</EditText>-->
-        <!--<Spinner-->
-            <!--android:id="@+id/SpinnerFeedbackType"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:prompt="@string/feedbacktype"-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:entries="@array/feedbacktypelist">-->
-        <!--</Spinner>-->
-        <!--<EditText-->
-            <!--android:id="@+id/EditTextFeedbackBody"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/feedbackbody"-->
-            <!--android:inputType="textMultiLine"-->
-            <!--android:lines="5"-->
-            <!--android:layout_width="fill_parent">-->
-        <!--</EditText>-->
-        <!--<CheckBox-->
-            <!--android:id="@+id/CheckBoxResponse"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/feedbackresponse"-->
-            <!--android:layout_width="fill_parent">-->
-        <!--</CheckBox>-->
-        <!--<Button-->
-            <!--android:id="@+id/ButtonSendFeedback"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/feedbackbutton"-->
-            <!--android:onClick="sendFeedback"-->
-            <!--android:layout_width="fill_parent">-->
-        <!--</Button>-->
-    <!--</LinearLayout>-->
-<!--</ScrollView>-->
-
-
+</FrameLayout>

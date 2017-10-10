@@ -1,17 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Scouting2017</string>
-    <!--Other string resources also defined in this file… -->
-    <string name="feedbacktitle">Here is a feedback app</string>
-    <string name="feedbackname">Your Name</string>
-    <string name="feedbackEmailAddress">Your Email</string>
-    <string name="feedbackbody">Feedback Details</string>
-    <string name="feedbackresponse">Would you like an email response?</string>
-    <string name="feedbackbutton">Submit Feedback</string>
-    <string name="feedbackemail">Email for feedback</string>
-    <string name="feedbacktype">What type of feedback?</string>
-    <string name="feedbacktype1">Praise</string>
-    <string name="feedbacktype2">Gripe</string>
-    <string name="feedbacktype3">Suggestion</string>
-    <string name="feedbacktype4">Bug</string>
+    <string name="app_name">2017 Kettering</string>
+
+    <!--Auton Strings-->
+    <string name="teamNumberHeading">Team Number</string>
+    <string name="matchNumberHeading">Match Number</string>
+    <string name="startingLocationHeading">Starting Location</string>
+    <string name="feederStarting">Feeder</string>
+    <string name="middleStarting">Middle</string>
+    <string name="boilerStarting">Boiler</string>
+    <string name="baselineCrossHeading">Baseline</string>
+    <string name="successBaseline">Success</string>
+    <string name="failBaseline">Fail</string>
+    <string name="autonGearHeading">Auton Gear</string>
+    <string name="feederAutonGear">Feeder</string>
+    <string name="middleAutonGear">Middle</string>
+    <string name="boilerAutonGear">Boiler</string>
+    <string name="noAutonGear">None</string>
+    <string name="highAutonFuelScored">High Auton Fuel Scored</string>
+    <string name="highAutonFuelMissed">High Auton Fuel Missed</string>
+    <string name="lowAutonFuel">Low Auton Fuel</string>
+    <string name="activatedHopper">Activated Hopper</string>
+    <string name="saveButton">Save</string>
+
+
+    <!--Auton Error Strings-->
+
+    <string name="teamNumberError">Enter in Team Number</string>
+    <string name="matchNumberError">Enter in Match Number</string>
+    <string name="autonHighFuelScoredError">Enter Fuel count</string>
+    <string name="autonHighFuelMissedError">Enter Fuel count</string>
+    <string name="autonLowFuelError">Enter Fuel count</string>
+
+    <!--Teleop Strings-->
+    <string name="teleopGearPlacedHeading">Gears Placed</string>
+    <string name="teleopGearDropHeading">Gears Dropped</string>
+    <string name="gearPlacementHeading">Gear Placement</string>
+    <string name="activeGearPlacement">Active</string>
+    <string name="autonGearSuccessHeading">Auton Gear Success</string>
+    <string name="passiveGearGearPlacement">Passive</string>
+    <string name="teleopHighFuelScoredHeading">High Fuel Scored</string>
+    <string name="teleopHighFuelMissedHeading">High Fuel Missed</string>
+    <string name="teleopLowFuelHeading">Low Fuel</string>
+    <string name="fuelRetrievalHeading">Fuel Retrieval Location</string>
+    <string name="floorFuelRetrieval">Floor</string>
+    <string name="hopperFuelRetrieval">Hopper</string>
+    <string name="chuteFuelRetrieval">Chute</string>
+    <string name="noFuelRetrieval">None</string>
+    <string name="gearRetrievalHeading">Gear Retrieval Location</string>
+    <string name="floorGearRetrieval">Floor</string>
+    <string name="chuteGearRetrieval">Chute</string>
+    <string name="noGearRetrieval">None</string>
+    <string name="climbingHeading">Climb</string>
+    <string name="successClimb">Success</string>
+    <string name="failClimb">Fail</string>
+    <string name="noClimb">None</string>
+    <string name="climbTimeHeading">Climb Time</string>
+    <string name="defenseHeading">Defense</string>
+    <string name="effectiveDefense">Good</string>
+    <string name="ineffectiveDefense">Bad</string>
+    <string name="receivedFoulsDefense">Too Much</string>
+    <string name="noDefense">NA</string>
+    <string name="fouls">Fouls</string>
+    <string name="nextButton">Move To Teleop</string>
+
+
+    <!--Teleop Error Strings-->
+    <string name="teleopGearPlacedError">Enter Gears Placed</string>
+    <string name="teleopGearDroppedError">Enter Gear Dropped</string>
+    <string name="teleopHighFuelScoredError">Enter High Fuel Scored</string>
+    <string name="teleopHighFuelMissedError">Enter High Fuel Missed</string>
+    <string name="teleopLowFuelError">Enter Low Fuel Scored</string>
+    <string name="climbTimeError">Enter Climb Time</string>
+
+
+    <!--Menu Strings-->
+    <string name="matchScouting">Match</string>
+    <string name="pitScouting">Pit</string>
+
+    <!--Pit Scouting Strings-->
+    <string name="pitTeamNumberHeading">Team Number</string>
+    <string name="pitFuelCapacityHeading">Fuel Capacity</string>
+    <string name="pitNumberOfGearsHeading">Number of gears per match</string>
+    <string name="pitAutonPlanHeading">What do you do in auton?</string>
+    <string name="pitClimbTimeHeading">Climb time</string>
+
+
+
+    <!--Pit Error Strings-->
+    <string name="pitTeamNumberError">Enter Team Number</string>
+    <string name="pitFuelCapacityError">Enter Fuel Capacity</string>
+    <string name="pitNumberOfGearsError">Enter number of gears</string>
+    <string name="pitAutonPlanError">Enter Auton Plan</string>
+    <string name="pitClimbTimeError">Enter Climb Time</string>
+
+
 </resources>
