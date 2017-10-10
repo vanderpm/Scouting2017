@@ -91,6 +91,30 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.match_scouting:
+                startActivity(new Intent(this, AutonActivity.class));
+                return true;
+            case R.id.pit_scouting:
+                startActivity(new Intent(this, PitActivity.class));
+                return true;
+            case R.id.send_data:
+                startActivity(new Intent(this, SendDataActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -114,26 +138,7 @@ public class AutonActivity extends AppCompatActivity implements View.OnKeyListen
         autonLowFuelInput.setOnKeyListener(null);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.match_scouting:
-                startActivity(new Intent(this, AutonActivity.class));
-                return true;
-            case R.id.pit_scouting:
-                startActivity(new Intent(this, PitActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
 
     @Override

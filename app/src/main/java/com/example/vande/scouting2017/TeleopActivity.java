@@ -111,6 +111,28 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         teleopDataStringList = new ArrayList<>();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.match_scouting:
+                startActivity(new Intent(this, AutonActivity.class));
+                return true;
+            case R.id.pit_scouting:
+                startActivity(new Intent(this, PitActivity.class));
+                return true;
+            case R.id.send_data:
+                startActivity(new Intent(this, SendDataActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -135,25 +157,7 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         climbTimeInput.setOnKeyListener(null);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.match_scouting:
-                startActivity(new Intent(this, AutonActivity.class));
-                return true;
-            case R.id.pit_scouting:
-                startActivity(new Intent(this, PitActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -224,10 +228,7 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         final RadioButton climbing_Radiobtn = (RadioButton) findViewById(climbingRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton defense_Radiobtn = (RadioButton) findViewById(defenseRadiobtnGrp.getCheckedRadioButtonId());
 
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            File Root = Environment.getExternalStorageDirectory();
-            File Dir = new File(Root.getAbsoluteFile() + "/Documents");
-            File file = new File(Dir, "Match" + Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID) + ".csv");
+            File file = new File(this.getFilesDir(), "Match.csv");
 
             teleopDataStringList.add(getTextInputLayoutString(teleopGearPlacedInputLayout));
             teleopDataStringList.add(gearPlacement_Radiobtn.getText());
@@ -250,10 +251,7 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            Toast.makeText(getApplicationContext(), "SD card not found", Toast.LENGTH_LONG).show();
-        }
-        Toast.makeText(getApplicationContext(), "message Saved", Toast.LENGTH_LONG).show();
+
 
         Intent intent = getIntent();
         intent.putExtra("Key", value);
