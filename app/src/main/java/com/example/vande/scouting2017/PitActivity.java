@@ -12,10 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.File;
@@ -37,17 +34,23 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
     @BindView(R.id.pit_teamNumber_input_layout)
     public TextInputLayout pitTeamNumberInputLayout;
 
-    @BindView(R.id.pit_fuelCapacity_input_layout)
-    public TextInputLayout pitFuelCapacityInputLayout;
+    @BindView(R.id.pit_autonMode_input_layout)
+    public TextInputLayout pitAutonModeInputLayout;
 
     @BindView(R.id.pit_numberOfGears_input_layout)
     public TextInputLayout pitNumberOfGearsInputLayout;
 
-    @BindView(R.id.pit_autonPlan_input_layout)
-    public TextInputLayout pitAutonPlanInputLayout;
+    @BindView(R.id.pit_floorGear_input_layout)
+    public TextInputLayout pitFloorGearInputLayout;
+
+    @BindView(R.id.pit_teleFuel_input_layout)
+    public TextInputLayout pitTeleFuelInputLayout;
 
     @BindView(R.id.pit_climbTime_input_layout)
     public TextInputLayout pitClimbTimeInputLayout;
+
+    @BindView(R.id.save_pit_btn)
+    public Button savePitBtn;
 
 
     private ArrayList<CharSequence> pitDataStringList;
@@ -90,9 +93,10 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
         super.onResume();
 
         pitTeamNumberInputLayout.setOnKeyListener(this);
-        pitFuelCapacityInputLayout.setOnKeyListener(this);
+        pitAutonModeInputLayout.setOnKeyListener(this);
         pitNumberOfGearsInputLayout.setOnKeyListener(this);
-        pitAutonPlanInputLayout.setOnKeyListener(this);
+        pitFloorGearInputLayout.setOnKeyListener(this);
+        pitTeleFuelInputLayout.setOnKeyListener(this);
         pitClimbTimeInputLayout.setOnKeyListener(this);
 
     }
@@ -103,9 +107,10 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
         super.onPause();
 
         pitTeamNumberInputLayout.setOnKeyListener(this);
-        pitFuelCapacityInputLayout.setOnKeyListener(this);
+        pitAutonModeInputLayout.setOnKeyListener(this);
         pitNumberOfGearsInputLayout.setOnKeyListener(this);
-        pitAutonPlanInputLayout.setOnKeyListener(this);
+        pitFloorGearInputLayout.setOnKeyListener(this);
+        pitTeleFuelInputLayout.setOnKeyListener(this);
         pitClimbTimeInputLayout.setOnKeyListener(this);
 
     }
@@ -124,16 +129,20 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
                         pitTeamNumberInputLayout.setError(null);
                         break;
 
-                    case R.id.pit_fuelCapacity_input:
-                        pitFuelCapacityInputLayout.setError(null);
+                    case R.id.pit_autonMode_input:
+                        pitAutonModeInputLayout.setError(null);
                         break;
 
-                    case R.id.pit_NumberOfGears_input:
+                    case R.id.pit_numberOfGears_input:
                         pitNumberOfGearsInputLayout.setError(null);
                         break;
 
-                    case R.id.pit_autonPlan_input:
-                        pitAutonPlanInputLayout.setError(null);
+                    case R.id.pit_floorGear_input:
+                        pitFloorGearInputLayout.setError(null);
+                        break;
+
+                    case R.id.pit_teleFuel_input:
+                        pitFloorGearInputLayout.setError(null);
                         break;
 
                     case R.id.pit_climbTime_input:
@@ -145,7 +154,7 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
         return false;
     }
 
-    public void saveData(View view) throws IOException {
+    public void savePitData(View view) throws IOException {
         String state = Environment.getExternalStorageState();
         boolean allInputsPassed = false;
 
@@ -153,15 +162,15 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
         if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitTeamNumberInputLayout))) {
             pitTeamNumberInputLayout.setError(getText(R.string.pitTeamNumberError));
             ViewUtils.requestFocus(pitTeamNumberInputLayout, this);
-        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitFuelCapacityInputLayout))) {
-            pitFuelCapacityInputLayout.setError(getText(R.string.pitFuelCapacityError));
-            ViewUtils.requestFocus(pitFuelCapacityInputLayout, this);
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitAutonModeInputLayout))) {
+            pitAutonModeInputLayout.setError(getText(R.string.pitAutonModeError));
+            ViewUtils.requestFocus(pitAutonModeInputLayout, this);
         } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitNumberOfGearsInputLayout))) {
             pitNumberOfGearsInputLayout.setError(getText(R.string.pitNumberOfGearsError));
             ViewUtils.requestFocus(pitNumberOfGearsInputLayout, this);
-        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitAutonPlanInputLayout))) {
-            pitAutonPlanInputLayout.setError(getText(R.string.pitAutonPlanError));
-            ViewUtils.requestFocus(pitAutonPlanInputLayout, this);
+        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitFloorGearInputLayout))) {
+            pitFloorGearInputLayout.setError(getText(R.string.pitFloorGearError));
+            ViewUtils.requestFocus(pitFloorGearInputLayout, this);
         } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitClimbTimeInputLayout))) {
             pitClimbTimeInputLayout.setError(getText(R.string.pitClimbTimeError));
             ViewUtils.requestFocus(pitClimbTimeInputLayout, this);
@@ -174,13 +183,6 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
         }
 
 
-//        final RadioButton gearPlacement_Radiobtn = (RadioButton) findViewById(gearPlacementRadiobtnGrp.getCheckedRadioButtonId());
-//        final RadioButton fuelRetreival_Radiobtn = (RadioButton) findViewById(fuelRetrievalRadiobtnGrp.getCheckedRadioButtonId());
-//        final RadioButton gearRetreival_Radiobtn = (RadioButton) findViewById(gearRetrievalRadiobtnGrp.getCheckedRadioButtonId());
-//        final RadioButton climbing_Radiobtn = (RadioButton) findViewById(climbingRadiobtnGrp.getCheckedRadioButtonId());
-//        final RadioButton defense_Radiobtn = (RadioButton) findViewById(defenseRadiobtnGrp.getCheckedRadioButtonId());
-
-
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             File Root = Environment.getExternalStorageDirectory();
             File Dir = new File(Root.getAbsoluteFile() + "/Documents");
@@ -189,9 +191,9 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
 
 
             pitDataStringList.add(getTextInputLayoutString(pitTeamNumberInputLayout));
-            pitDataStringList.add(getTextInputLayoutString(pitFuelCapacityInputLayout));
+            pitDataStringList.add(getTextInputLayoutString(pitAutonModeInputLayout));
             pitDataStringList.add(getTextInputLayoutString(pitNumberOfGearsInputLayout));
-            pitDataStringList.add(getTextInputLayoutString(pitAutonPlanInputLayout));
+            pitDataStringList.add(getTextInputLayoutString(pitFloorGearInputLayout));
             pitDataStringList.add(getTextInputLayoutString(pitClimbTimeInputLayout));
 
 

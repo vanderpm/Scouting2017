@@ -80,18 +80,20 @@
 
     <!--Pit Scouting Strings-->
     <string name="pitTeamNumberHeading">Team Number</string>
-    <string name="pitFuelCapacityHeading">Fuel Capacity</string>
+    <string name="pitAutonModeHeading">Auton Mode</string>
     <string name="pitNumberOfGearsHeading">Number of gears per match</string>
-    <string name="pitAutonPlanHeading">What do you do in auton?</string>
+    <string name="pitFloorGearHeading">Floor Gear</string>
+    <string name="pitTeleFuelHeading">Tele Fuel</string>
     <string name="pitClimbTimeHeading">Climb time</string>
-
+    <string name="savePitButton">Save</string>
 
 
     <!--Pit Error Strings-->
     <string name="pitTeamNumberError">Enter Team Number</string>
-    <string name="pitFuelCapacityError">Enter Fuel Capacity</string>
+    <string name="pitAutonModeError">Enter Auton Mode</string>
     <string name="pitNumberOfGearsError">Enter number of gears</string>
-    <string name="pitAutonPlanError">Enter Auton Plan</string>
+    <string name="pitFloorGearError">Enter Floor Gear</string>
+    <string name="pitTeleFuelError">Enter Tele Fuel</string>
     <string name="pitClimbTimeError">Enter Climb Time</string>
 
 
