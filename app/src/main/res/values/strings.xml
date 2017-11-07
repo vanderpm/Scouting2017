@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">2017 Kettering</string>
+    <string name="app_name">2017 WMRI</string>
 
     <!--Auton Strings-->
     <string name="teamNumberHeading">Team Number</string>
@@ -83,6 +83,8 @@
     <string name="pitAutonModeHeading">Auton Mode</string>
     <string name="pitNumberOfGearsHeading">Number of gears per match</string>
     <string name="pitFloorGearHeading">Floor Gear</string>
+    <string name="pitFloorGearYes">Yes</string>
+    <string name="pitFloorGearNo">No</string>
     <string name="pitTeleFuelHeading">Tele Fuel</string>
     <string name="pitClimbTimeHeading">Climb time</string>
     <string name="savePitButton">Save</string>

@@ -3,6 +3,7 @@ package com.example.vande.scouting2017;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.File;
@@ -40,8 +43,8 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
     @BindView(R.id.pit_numberOfGears_input_layout)
     public TextInputLayout pitNumberOfGearsInputLayout;
 
-    @BindView(R.id.pit_floorGear_input_layout)
-    public TextInputLayout pitFloorGearInputLayout;
+    @BindView(R.id.pit_floorGear_RadiobtnGrp)
+    public RadioGroup pitFloorGearRadiobtnGrp;
 
     @BindView(R.id.pit_teleFuel_input_layout)
     public TextInputLayout pitTeleFuelInputLayout;
@@ -51,6 +54,8 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
 
     @BindView(R.id.save_pit_btn)
     public Button savePitBtn;
+
+
 
 
     private ArrayList<CharSequence> pitDataStringList;
@@ -95,7 +100,6 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
         pitTeamNumberInputLayout.setOnKeyListener(this);
         pitAutonModeInputLayout.setOnKeyListener(this);
         pitNumberOfGearsInputLayout.setOnKeyListener(this);
-        pitFloorGearInputLayout.setOnKeyListener(this);
         pitTeleFuelInputLayout.setOnKeyListener(this);
         pitClimbTimeInputLayout.setOnKeyListener(this);
 
@@ -109,7 +113,6 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
         pitTeamNumberInputLayout.setOnKeyListener(this);
         pitAutonModeInputLayout.setOnKeyListener(this);
         pitNumberOfGearsInputLayout.setOnKeyListener(this);
-        pitFloorGearInputLayout.setOnKeyListener(this);
         pitTeleFuelInputLayout.setOnKeyListener(this);
         pitClimbTimeInputLayout.setOnKeyListener(this);
 
@@ -137,14 +140,6 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
                         pitNumberOfGearsInputLayout.setError(null);
                         break;
 
-                    case R.id.pit_floorGear_input:
-                        pitFloorGearInputLayout.setError(null);
-                        break;
-
-                    case R.id.pit_teleFuel_input:
-                        pitFloorGearInputLayout.setError(null);
-                        break;
-
                     case R.id.pit_climbTime_input:
                         pitClimbTimeInputLayout.setError(null);
                         break;
@@ -168,9 +163,6 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
         } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitNumberOfGearsInputLayout))) {
             pitNumberOfGearsInputLayout.setError(getText(R.string.pitNumberOfGearsError));
             ViewUtils.requestFocus(pitNumberOfGearsInputLayout, this);
-        } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitFloorGearInputLayout))) {
-            pitFloorGearInputLayout.setError(getText(R.string.pitFloorGearError));
-            ViewUtils.requestFocus(pitFloorGearInputLayout, this);
         } else if (StringUtils.isEmptyOrNull(getTextInputLayoutString(pitClimbTimeInputLayout))) {
             pitClimbTimeInputLayout.setError(getText(R.string.pitClimbTimeError));
             ViewUtils.requestFocus(pitClimbTimeInputLayout, this);
@@ -182,25 +174,26 @@ public class PitActivity extends AppCompatActivity implements View.OnKeyListener
             return;
         }
 
+        final RadioButton pitFloorGear_Radiobtn = (RadioButton) findViewById(pitFloorGearRadiobtnGrp.getCheckedRadioButtonId());
+
 
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             File Root = Environment.getExternalStorageDirectory();
             File Dir = new File(Root.getAbsoluteFile() + "/Documents");
             //create csv file
-            File file = new File(Dir, "pit.csv");
+            File file = new File(Dir, "Pit" + Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID) + ".csv");
 
 
             pitDataStringList.add(getTextInputLayoutString(pitTeamNumberInputLayout));
             pitDataStringList.add(getTextInputLayoutString(pitAutonModeInputLayout));
             pitDataStringList.add(getTextInputLayoutString(pitNumberOfGearsInputLayout));
-            pitDataStringList.add(getTextInputLayoutString(pitFloorGearInputLayout));
+            pitDataStringList.add(pitFloorGear_Radiobtn.getText());
             pitDataStringList.add(getTextInputLayoutString(pitClimbTimeInputLayout));
 
 
             String message = FormatStringUtils.addDelimiter(pitDataStringList, ",");
-//            String message = FormatStringUtils.addDelimiter(teleopDataStringList, ",") + auton +","+ FormatStringUtils.addDelimiter(teleopDataStringList, ",");
 
-//                message = heading + auton +","+ teleop + "\n";
+            
             //Output data to file
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(file, true);
