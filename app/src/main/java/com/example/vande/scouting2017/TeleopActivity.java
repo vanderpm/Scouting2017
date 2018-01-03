@@ -1,5 +1,6 @@
 package com.example.vande.scouting2017;
 
+import android.content.Context;
 import android.os.Environment;
 
 import android.provider.Settings;
@@ -227,8 +228,7 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
         final RadioButton gearRetreival_Radiobtn = (RadioButton) findViewById(gearRetrievalRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton climbing_Radiobtn = (RadioButton) findViewById(climbingRadiobtnGrp.getCheckedRadioButtonId());
         final RadioButton defense_Radiobtn = (RadioButton) findViewById(defenseRadiobtnGrp.getCheckedRadioButtonId());
-
-            File file = new File(this.getFilesDir(), "Match.csv");
+        String filename = "match";
 
             teleopDataStringList.add(getTextInputLayoutString(teleopGearPlacedInputLayout));
             teleopDataStringList.add(gearPlacement_Radiobtn.getText());
@@ -245,9 +245,10 @@ public class TeleopActivity extends AppCompatActivity implements View.OnKeyListe
             String message = auton + "," + FormatStringUtils.addDelimiter(teleopDataStringList, ",");
 
             try {
-                FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+                FileOutputStream fileOutputStream = openFileOutput(filename, MODE_WORLD_READABLE);
                 fileOutputStream.write(message.getBytes());
                 fileOutputStream.close();
+                Toast.makeText(getApplicationContext(), "Message Saved", Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
